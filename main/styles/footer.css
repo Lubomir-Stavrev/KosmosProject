@@ -1,0 +1,17 @@
+#footer {
+    background: linear-gradient(to top, #ffffff 1%, #b6e4e6 100%);
+    bottom: 0;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+#footer h5 {
+    margin-top: 0px;
+    color: #202020;
+    font-family: 'Roboto-thin';
+}
+
+#svg-Footer {
+    margin-top: 100px;
+}
