@@ -1,25 +1,10 @@
 const appElement = document.getElementById('app');
 
-let profilesWithAdminRight = ['pesho@mail.bg', 'pesho123@mail.bg'];
-
 
 const routs = {
     'home': '../templates/homePage.hbs',
-    'login': '../templates/login.hbs',
-    'register': '../templates/register.hbs',
-    'aboutPage': '../templates/aboutPage.hbs',
-    'contactPage': '../templates/contactPage.hbs',
-    'create': '../templates/createPage.hbs',
-    'details': '../templates/productDetails.hbs',
-    'edit': '../templates/editPage.hbs',
-    'imagePreview': '../templates/imagesPreview.hbs',
-    'cart': '../templates/shoppingCart.hbs',
-    'paymentPage': '../templates/paymentPage.hbs',
-    'profile': '../templates/profile.hbs',
-
+    'kosmosShop': '../templates/shop/shop.hbs',
 }
-
-
 
 async function router(path, condition) {
     let tempData = await auth.getUserData();
@@ -30,34 +15,6 @@ async function router(path, condition) {
             auth.logout();
             navigate('/home');
             return;
-        case 'home':
-            let productsData = await auth.getAllProducts();
-
-            if (condition) {
-                let choosenCategoryName = condition;
-
-                if (choosenCategoryName == 'All Categories') {
-
-                    tempData.products = productsData.all;
-
-                } else if (choosenCategoryName == 'Accessories Women') {
-                    tempData.products = productsData.categories.accessoriesWomen;
-                } else if (choosenCategoryName == 'Accessories Men') {
-                    tempData.products = productsData.categories.accessoriesMen;
-                } else if (choosenCategoryName == 'Clothes Women') {
-                    tempData.products = productsData.categories.clothesWomen;
-                } else if (choosenCategoryName == 'Clothes Men') {
-                    tempData.products = productsData.categories.clothesMen;
-                }
-                tempData.categoryName = choosenCategoryName;
-            } else {
-                tempData.products = productsData.all;
-            }
-
-
-            break;
-        default:
-            break;
     }
 
     if (path.includes('details/')) {

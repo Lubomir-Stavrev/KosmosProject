@@ -1,18 +1,20 @@
 function registerPartial() {
 
-    let header = document.getElementById('headerTemp').innerHTML;
+    /* let header = document.getElementById('headerTemp').innerHTML;
     let footer = document.getElementById('footerTemp').innerHTML;
     let headerNotHome = document.getElementById('headerNotHomeTemp').innerHTML;
 
     Handlebars.registerPartial('header', header);
     Handlebars.registerPartial('footer', footer);
-    Handlebars.registerPartial('headerNotHome', headerNotHome);
+    Handlebars.registerPartial('headerNotHome', headerNotHome); */
 }
 
 function navigateHandler(e) {
     e.preventDefault();
-
-    if (e.target.tagName == 'BUTTON' || e.target.tagName == 'LI' || e.target.tagName == 'IMG') {
+    console.log(e.target.tagName)
+    if (e.target.tagName == 'BUTTON' || e.target.tagName == 'LI' ||
+        e.target.tagName == 'SPAN' ||
+        e.target.tagName == 'IMG') {
         let url = new URL(e.target.parentNode.href);
         navigate(url.pathname);
     }

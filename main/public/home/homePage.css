@@ -1,0 +1,42 @@
+#homeContainer div img {
+    width: 100%;
+    max-width: 55rem;
+    height: auto;
+    margin-top: calc(6rem - 1rem);
+    margin-bottom: 2%;
+}
+
+#homeContainer div button {
+    float: right;
+    font-size: 2rem;
+    margin-right: 20%;
+    padding: 17px 23px;
+    border: 2px solid #00308F;
+    color: #00308F;
+    background: rgba(89, 196, 225, 0.0);
+    cursor: pointer;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#homeContainer div button .arrow {
+    display: none;
+}
+
+#homeContainer div button:hover {
+    box-shadow: 0px 6px 30px -8px rgba(0, 0, 0, .7);
+    transition: 0.5s;
+}
+
+#homeContainer div button:hover .arrow {
+    transition: 0.5s;
+    display: contents;
+}
