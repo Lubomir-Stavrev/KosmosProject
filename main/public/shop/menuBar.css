@@ -1,0 +1,70 @@
+.menuContainer {
+    padding: 10px;
+    float: left;
+    cursor: pointer;
+    margin-left: 15pt;
+    margin-top: 15pt;
+    margin-bottom: -40pt;
+    margin-right: 0px;
+    z-index: 100;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #00308F;
+    margin: 6px 0;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    z-index: 100;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+    -moz-transform: rotate(-45deg) translate(-9px, 6px);
+    -ms-transform: rotate(-45deg) translate(-9px, 6px);
+    -o-transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+    -moz-transform: rotate(45deg) translate(-8px, -8px);
+    -ms-transform: rotate(45deg) translate(-8px, -8px);
+    -o-transform: rotate(45deg) translate(-8px, -8px);
+}
+
+#dropDownContant {
+    position: absolute;
+    font-size: 12pt;
+    border: 1px #202020 solid;
+    border-radius: 10px;
+    background: rgb(15, 190, 237, 0.99);
+    padding: 20px 20px 10px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin: 0px;
+    z-index: 100;
+}
+
+#dropDownContant a {
+    text-decoration: none;
+    color: #fff
+}
+
+#dropDownContant a:hover {
+    text-decoration: underline;
+    color: #275ea3
+}

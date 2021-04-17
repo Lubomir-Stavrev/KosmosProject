@@ -1,40 +1,80 @@
-<!--Hey! This is the original version
-of Simple CSS Waves-->
 
-<div class="header">
-    <div class="inner-header flex">
-        <img id="logoHeader" src="../../images/logo1.png" alt="">
+
+{{> header}}
+
+
+<main>
+    <div class="wrap">
+        <div class="search">
+            <input type="text" class="searchTerm"
+                placeholder="Какво търсите ?">
+            <button type="submit" class="searchButton">
+                <img src="../../images/waterDrop.png"
+                    alt="">
+            </button>
+        </div>
     </div>
+    <div id="posts" onclick="navigateHandler(event)">
 
-    <!--Waves Container-->
-    <div>
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28" preserveAspectRatio="none"
-            shape-rendering="auto">
-            <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58
-                    18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                </defs>
-                <g class="parallax">
-                    <use xlink:href="#gentle-wave" x="48" y="0"
-                        fill="rgba(255,255,255,0.7" />
-                        <use xlink:href="#gentle-wave" x="48" y="3"
-                            fill="rgba(255,255,255,0.5)" />
-                            <use xlink:href="#gentle-wave" x="48" y="5"
-                                fill="rgba(255,255,255,0.3)" />
-                                <use xlink:href="#gentle-wave" x="48"
-                                    y="7" fill="#fff" />
-                                </g>
-                            </svg>
-                        </div>
-                        <!--Waves end-->
+        <div onclick="navigateHandler(event)" class="post">
+            <h1>Препарат</h1>
+            <a href="/details/1">
 
-                    </div>
-                    <!--Header ends-->
+                <img class="product-Image"
+                    src="https://yosial.com/wp-content/uploads/2020/05/preparat-za-toaletna-domestos-white-750-ml.png"
+                    alt="">
+                <div class="middle">
+                    <div class="textButton">Купи Веро за
+                        10лв</div>
+                </div>
+                <h1>10лв</h1>
 
-                    <!--Content starts-->
-                    <div class="content flex">
-                        <p>Daniel Österman | 2019 | Free to use</p>
-                    </div>
-                    <!--Content ends-->
+            </a>
+
+        </div>
+        <div onclick="navigateHandler(event)" class="post">
+            <h1>Веро</h1>
+            <a href="/details/id">
+
+                <img class="product-Image"
+                    src="https://static.ivis.bg/thumbs/3/exo-hydrogel-vero-min.jpg"
+                    alt="">
+                <div class="middle">
+                    <div class="textButton">Купи Веро за
+                        10лв</div>
+                </div>
+            </a>
+
+        </div>
+        <div onclick="navigateHandler(event)" class="post">
+            <h1>Носни кърпички</h1>
+            <a href="/details/id">
+
+                <img class="product-Image"
+                    src="https://shop.lillydrogerie.bg/media/catalog/product/cache/1d61232755c257eb23e203a98c67893b/3/8/3800207182243.jpg"
+                    alt="">
+                <div class="middle">
+                    <div class="textButton">Купи Веро за
+                        10лв</div>
+                </div>
+            </a>
+
+        </div>
+        <div onclick="navigateHandler(event)" class="post">
+            <h1>Памперси</h1>
+            <a href="/details/id">
+
+                <img class="product-Image"
+                    src="https://uploads.remediumapi.com/5ecc40af6af72c3ad4d4db1e/69806/c406175c319c73398bd9f8adb61f48fd/480.jpeg"
+                    alt="">
+
+                <div class="middle">
+                    <div class="textButton">Купи Веро за
+                        10лв</div>
+                </div>
+            </a>
+
+        </div>
+
+    </main>
+    {{> footer}}

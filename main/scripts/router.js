@@ -4,6 +4,7 @@ const appElement = document.getElementById('app');
 const routs = {
     'home': '../templates/homePage.hbs',
     'kosmosShop': '../templates/shop/shop.hbs',
+    'details': '../templates/detailsPage/details.hbs',
 }
 
 async function router(path, condition) {
@@ -18,7 +19,7 @@ async function router(path, condition) {
     }
 
     if (path.includes('details/')) {
-        let id = path.split('/')[1];
+        /* let id = path.split('/')[1];
         let data = await auth.getDetails(id);
         let allComments = await auth.getAllComments(id);
         let allLikes = await auth.getAllLikes(id);
@@ -26,7 +27,7 @@ async function router(path, condition) {
         commentSectionControl(tempData, allComments, condition);
 
         Object.assign(tempData, allLikes);
-        Object.assign(tempData, data);
+        Object.assign(tempData, data); */
         path = 'details';
     } else if (path.includes('edit/')) {
         let id = path.split('/')[1];
@@ -72,4 +73,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/home');
+navigate('/details');

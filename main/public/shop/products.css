@@ -1,0 +1,112 @@
+.post {
+    display: inline-block;
+    text-align: center;
+    align-content: center;
+    margin: 25px;
+    font-size: 1px;
+    position: relative;
+}
+
+.post:hover img {
+    opacity: 0.7;
+}
+
+.post h1 {
+    font-size: calc(19pt - 6px);
+    color: #00308F;
+}
+
+.product-Image {
+    border-bottom: 2px solid #00308F;
+    border-radius: 90px;
+    max-width: 230px;
+    max-height: 330px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -ms-transition: .5s ease;
+    -o-transition: .5s ease;
+    -webkit-backface-visibility: hidden;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    -ms-border-radius: 90px;
+    -o-border-radius: 90px;
+}
+
+.borderImage {
+    border-left: 1px solid #59c4e1;
+    border-right: 1px solid #59c4e1;
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+}
+
+.product-Image:hover {
+    cursor: pointer;
+}
+
+.post:hover .product-Image {
+    opacity: 0.3;
+}
+
+.post:hover .middle {
+    opacity: 1;
+}
+
+.textButton {
+    font-size: calc(15pt - 3pt);
+    padding: 14px 20px;
+    border: 1px solid #00308F;
+    color: #00308F;
+    background: rgba(89, 196, 225, 0.0);
+    cursor: pointer;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+#posts {
+    margin-top: calc(20pt - 1pt);
+    position: center;
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.detailsButton {
+    font-size: 10px;
+    padding: 14px 20px;
+    border: 1px solid #00308F;
+    color: #00308F;
+    background: rgba(89, 196, 225, 0.0);
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.wrap {
+    min-height: calc(100% - 285px);
+}

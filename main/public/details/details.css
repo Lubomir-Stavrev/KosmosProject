@@ -1,0 +1,34 @@
+#detailsWrapper {
+    width: 100%;
+    min-height: 50vh;
+    margin-top: 100px;
+}
+
+#detailsContant {
+    display: inline-flex;
+}
+
+#imgContainer {
+    margin-left: 20%;
+    border-right: #00308F solid 2px;
+    border-radius: 100%;
+    padding: 30px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(233, 245, 255, 1) 54%, rgba(233, 243, 255, 1) 65%, rgba(183, 251, 255, 1) 79%, rgba(161, 242, 255, 1) 90%, rgba(0, 212, 255, 1) 100%);
+}
+
+#detailsImage {
+    border-left: 2px solid #00308F;
+    border-radius: 100%;
+    max-width: 400px;
+    max-height: 500px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+#detailsInfo {
+    margin-right: 20%;
+    margin-left: 3%;
+    color: #00308F;
+}

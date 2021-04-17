@@ -1,12 +1,10 @@
 function registerPartial() {
 
-    /* let header = document.getElementById('headerTemp').innerHTML;
+    let header = document.getElementById('headerTemp').innerHTML;
     let footer = document.getElementById('footerTemp').innerHTML;
-    let headerNotHome = document.getElementById('headerNotHomeTemp').innerHTML;
 
     Handlebars.registerPartial('header', header);
     Handlebars.registerPartial('footer', footer);
-    Handlebars.registerPartial('headerNotHome', headerNotHome); */
 }
 
 function navigateHandler(e) {
@@ -44,6 +42,17 @@ function changeColorOnHover(e) {
     })
 
 }
+
+function activateMenu(x) {
+    x.classList.toggle("change");
+
+    let dropDownContant = document.getElementById('dropDownContant');
+    dropDownContant.style.display = dropDownContant.style.display == 'none' ?
+        'block' : 'none';
+
+}
+
+
 
 function registerForm(e) {
     e.preventDefault();
