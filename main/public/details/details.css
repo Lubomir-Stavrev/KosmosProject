@@ -9,10 +9,11 @@
 }
 
 #imgContainer {
-    margin-left: 20%;
+    margin-left: calc(20% - 55pt);
     border-right: #00308F solid 2px;
     border-radius: 100%;
-    padding: 30px;
+    padding: calc(30px - 10px);
+    display: inherit;
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(233, 245, 255, 1) 54%, rgba(233, 243, 255, 1) 65%, rgba(183, 251, 255, 1) 79%, rgba(161, 242, 255, 1) 90%, rgba(0, 212, 255, 1) 100%);
 }
 
@@ -21,6 +22,8 @@
     border-radius: 100%;
     max-width: 400px;
     max-height: 500px;
+    min-width: 40px;
+    min-height: 50px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
@@ -28,7 +31,63 @@
 }
 
 #detailsInfo {
-    margin-right: 20%;
-    margin-left: 3%;
+    margin-right: calc(20% - 20pt);
+    margin-left: calc(3% - 10px);
     color: #00308F;
+}
+
+.buyButton {
+    background: rgb(189, 255, 243, 0.2);
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin-top: 20pt;
+    border: #00308F solid 2px;
+    color: #00308F;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+.buyButton:hover {
+    background: rgb(189, 255, 243, 0.5);
+    padding: 13px 23px;
+    font-size: 1.6rem;
+}
+
+@media (max-width: 770px) {
+    #detailsWrapper {
+        justify-content: center;
+        text-align: center;
+    }
+    #detailsContant {
+        display: inline-block;
+        text-align: center;
+    }
+    #imgContainer {
+        position: relative;
+        border-right: none;
+        border-bottom: #00308F solid 2px;
+        background: linear-gradient( rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(233, 245, 255, 1) 54%, rgba(233, 243, 255, 1) 65%, rgba(183, 251, 255, 1) 79%, rgba(161, 242, 255, 1) 90%, rgba(0, 212, 255, 1) 100%);
+        justify-content: center;
+        text-align: center;
+        margin-left: 0pt;
+        margin-right: 0pt;
+    }
+    #detailsImage {
+        width: calc(300px - 5pt);
+        border-left: none;
+        border-top: 2px solid #00308F;
+    }
+    #detailsInfo {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
 }

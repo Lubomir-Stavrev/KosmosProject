@@ -47,9 +47,9 @@
 #dropDownContant {
     position: absolute;
     font-size: 12pt;
-    border: 1px #202020 solid;
+    border: 1px #00008B solid;
     border-radius: 10px;
-    background: rgb(15, 190, 237, 0.99);
+    background: rgb(15, 90, 237, 0.5);
     padding: 20px 20px 10px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 10px;
