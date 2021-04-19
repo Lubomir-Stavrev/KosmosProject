@@ -37,6 +37,7 @@
     -moz-border-radius: 0 10px 10px 0;
     -ms-border-radius: 0 10px 10px 0;
     -o-border-radius: 0 10px 10px 0;
+    
 }
 
 .searchButton img {
@@ -51,4 +52,6 @@
     justify-content: center;
     margin-top: calc(6% + 10px);
     z-index: 1000;
+    display:inherit;
+    
 }

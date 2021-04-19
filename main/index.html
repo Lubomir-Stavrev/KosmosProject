@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="./public/shop/menuBar.css">
     <link rel="stylesheet" href="./public/shop/footer.css">
     <link rel="stylesheet" href="./public/details/details.css">
+    <link rel="stylesheet" href="./public/shop/category.css">
+    <link rel="stylesheet" href="./public/adminStuffs/settingBar.css">
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
@@ -55,9 +57,9 @@
                     <div class="bar2"></div>
                     <div class="bar3"></div>
                 </div>
-                <div id="dropDownContant" style="display: none;">
+                <div onclick="navigateHandler(event)" id="dropDownContant" style="display: none;">
 
-                    <a href="/">Магазин</a>
+                    <a href="/kosmosShop">Магазин</a>
                     <br />
                     <a href="/userProfile/logs">Профил</a>
                     <br />
@@ -65,11 +67,13 @@
                     <br />
                     <a href="/register">Регистрирай се</a>
                     <br>
-                    <a href="/">Излез</a>
+                    <a href="/logout">Излез</a>
 
                 </div>
             </div>
-
+<div class="settingsBar">
+                <a href="">⚙</a>
+            </div>
 
             <div class="inner-header flex">
 
@@ -95,6 +99,7 @@
                                 </g>
                             </svg>
             </div>
+            
         </div>
     </script>
 
@@ -241,6 +246,12 @@
                                                                                                     />
                                                                                                 </g>
                                                                                             </svg>
+                                                                                         
+                                                                                            <div id="socialMediaContainer">
+        <a href="">
+        <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/>
+        </a>
+        </div>
         </footer>
 
     </script>

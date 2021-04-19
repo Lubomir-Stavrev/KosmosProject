@@ -73,4 +73,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/details');
+navigate('/kosmosShop');

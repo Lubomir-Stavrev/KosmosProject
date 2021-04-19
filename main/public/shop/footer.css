@@ -15,6 +15,7 @@ footer div {
 svg {
     width: 100%;
     overflow: visible;
+    
 }
 
 .wave {
@@ -100,4 +101,23 @@ svg {
     to {
         transform: translateX(-100%);
     }
+}
+
+
+
+#socialMediaContainer{
+    float:left;
+    z-index:100;
+    position: absolute;
+    display:inherit;
+    background: rgb(189, 255, 243, 0.0);
+    margin:0px;
+}
+#socialMediaContainer img{
+    float:left;
+    z-index:100;
+    position: absolute;
+    display:inherit;
+    background: rgb(189, 255, 243, 0.0);
+    margin:0px;
 }
