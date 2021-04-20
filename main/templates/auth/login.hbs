@@ -1,0 +1,27 @@
+{{> header}}
+<div class="formContainer">
+<h1 class="formTitle">Вход</h1>
+<div class="titleLine"></div>
+
+<form  class="authForm" onsubmit="loginForm(event)">
+  
+  <div>
+    <label for="email"><b>Имейл</b></label>
+    <br>  
+    <input type="email" id="login-Email" placeholder="example@mail.com" name="email" required>
+<br>  
+    <label for="password"><b>Парола</b></label>
+    <br>  
+    <input type="password" id="login-Password" placeholder="Въведете парола" name="password" required>
+
+<br>
+<br>
+  </div>
+  <div >
+    <button class="authButton" type="submit" >Влез</button>
+  </div>
+  <a class="underFormInfo" onclick="navigateHandler(event)" href="/register">Нямате все още регистрация?</a>
+</form>
+</div> 
+
+{{>footer}}

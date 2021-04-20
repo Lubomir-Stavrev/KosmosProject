@@ -5,6 +5,10 @@ const routs = {
     'home': '../templates/homePage.hbs',
     'kosmosShop': '../templates/shop/shop.hbs',
     'details': '../templates/detailsPage/details.hbs',
+    'login': '../templates/auth/login.hbs',
+    'register': '../templates/auth/register.hbs',
+    'create': '../templates/auth/createProduct.hbs',
+    'edit': '../templates/auth/editProduct.hbs',
 }
 
 async function router(path, condition) {
@@ -73,4 +77,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/kosmosShop');
+navigate('/register');

@@ -22,26 +22,33 @@
     <link rel="stylesheet" href="./public/details/details.css">
     <link rel="stylesheet" href="./public/shop/category.css">
     <link rel="stylesheet" href="./public/adminStuffs/settingBar.css">
+    <link rel="stylesheet" href="./public/auth/authForms.css">
 
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="./node_modules/handlebars/dist/handlebars.js"></script>
 
 
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyDGX_-0N6RPDzAdu5snI41AfhE0KmAa_B4",
-            authDomain: "myownspa.firebaseapp.com",
-            projectId: "myownspa",
-            storageBucket: "myownspa.appspot.com",
-            messagingSenderId: "84909775374",
-            appId: "1:84909775374:web:84a45934b8efa0b6dffa5f"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
+   <script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg",
+    authDomain: "kosmosdb-44938.firebaseapp.com",
+    projectId: "kosmosdb-44938",
+    storageBucket: "kosmosdb-44938.appspot.com",
+    messagingSenderId: "407141750177",
+    appId: "1:407141750177:web:2a6810f1520c9451aba7e0",
+    measurementId: "G-JEEN9P60YQ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 
     <script src="./scripts/service.js" defer></script>
     <script src="./scripts/router.js" defer></script>
