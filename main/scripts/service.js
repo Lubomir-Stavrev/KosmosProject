@@ -1,7 +1,7 @@
 const userModel = firebase.auth();
 
-const addKeyForAuth = 'AIzaSyA-131Sc54-7JA2T9hhYmBvIdvrE40u2is';
-const productsURL = 'https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/products.json';
+const addKeyForAuth = 'AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg';
+const productsURL = `https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/.json`;
 const usersURL = 'https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/users.json';
 
 
@@ -33,7 +33,7 @@ const auth = {
                 return 'Error';
             })
     },
-    create(title, type, category, description, image, price, quantity) {
+    create(title, type, category, description, image, price, quantity, brand) {
 
         return fetch(productsURL, {
             method: 'POST',
@@ -45,6 +45,7 @@ const auth = {
                 image,
                 price,
                 quantity,
+                brand,
                 uid: this.getUserData().uid
             })
         }).then(res => res.json());
@@ -94,7 +95,8 @@ const auth = {
                             price: el[1].price,
                             category: el[1].category,
                             type: el[1].type,
-                            quantity: el[1].quantity
+                            quantity: el[1].quantity,
+                            brand: el[1].brand
                         })
                         if (el[1].category == 'Accessories-Men') {
                             allCategories.accessoriesMen.push({
@@ -157,7 +159,7 @@ const auth = {
 
     async getDetails(id) {
 
-        let data = await fetch(`https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/products/${id}.json`)
+        let data = await fetch(`https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/${id}.json`)
             .then(res => res.json())
             .then(data => {
 
@@ -175,6 +177,7 @@ const auth = {
                     type: data.type,
                     category: data.category,
                     image: data.image,
+                    brand: data.brand,
                     uid: data.uid,
                     productId: id,
                     isCreator

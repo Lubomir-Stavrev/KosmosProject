@@ -18,20 +18,25 @@ async function router(path, condition) {
     switch (path) {
         case 'logout':
             auth.logout();
-            navigate('/home');
+            navigate('/kosmosShop');
             return;
+        case 'kosmosShop':
+            let productsData = await auth.getAllProducts();
+            tempData.products = productsData.all;
+            console.log(tempData);
+            break;
     }
 
     if (path.includes('details/')) {
-        /* let id = path.split('/')[1];
+        let id = path.split('/')[1];
         let data = await auth.getDetails(id);
-        let allComments = await auth.getAllComments(id);
-        let allLikes = await auth.getAllLikes(id);
+        /* let allComments = await auth.getAllComments(id);
+        let allLikes = await auth.getAllLikes(id); */
 
-        commentSectionControl(tempData, allComments, condition);
+        /* commentSectionControl(tempData, allComments, condition); */
 
-        Object.assign(tempData, allLikes);
-        Object.assign(tempData, data); */
+        /* Object.assign(tempData, allLikes); */
+        Object.assign(tempData, data);
         path = 'details';
     } else if (path.includes('edit/')) {
         let id = path.split('/')[1];
@@ -52,16 +57,6 @@ async function router(path, condition) {
         })
 }
 
-function commentSectionControl(tempData, allComments, condition) {
-    tempData.comments = allComments;
-    if (condition == 'block') {
-        tempData.sectionCondition = 'Hide';
-    } else {
-        tempData.sectionCondition = 'See';
-    }
-    tempData.displayStyle = condition;
-}
-
 function getTemplate(path) {
     let tempPath = routs[path];
 
@@ -77,4 +72,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/register');
+navigate('/details/-MYtuvpHgydrxLmQkEuV');

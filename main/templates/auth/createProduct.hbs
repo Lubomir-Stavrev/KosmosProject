@@ -1,45 +1,51 @@
+
 {{> header}}
-<h1 class="form-Title">Create Product Page</h1>
-<div class="custom-Line"></div>
-<form id="createForm" action="action_page.php"  onsubmit="createForm(event)">
-  
-  <div class="container">
-    <label for="uname"><b>Title</b></label>
-    <br>  
-    <input type="text" id="create-Title" placeholder="Enter Title" name="uname">
-<br>  
-<label for="uname"><b>Type</b></label>
-    <br>  
-    <input type="text" id="create-Type" placeholder="Enter Type" name="uname">
-<br>
-<br>  
-    <label for="psw"><b>Description</b></label>
-    <br>  
-    <input type="text" id="create-Description" placeholder="Enter Description" name="psw" >
-<br>
-<br>  
-    <label for="psw"><b>Image URL</b></label>
-    <br>  
-    <input type="url" id="create-Image" placeholder="Enter Image URL" name="psw" >
-<br>
-<br>  
-    <label for="psw"><b>Price</b></label>
-    <br>  
-    <input type="number" id="create-Price" placeholder="Enter Price" name="psw" >
-<br>
-<br>  
-    <label for="psw"><b>Quantity</b></label>
-    <br>  
-    <input type="number" id="create-Quantity" placeholder="Enter Quantity" name="psw" >
-<br>
-<br>
-<select  id="categorySection-Create" class="form-control"><option value={{category}} reqired> ---Please choose category--- </option><option value="All-Categories">All Categories</option><option value="Accessories-Men">Accessories Men</option><option value="Accessories-Women">Accessories Women</option><option value="Clothes-Men">Clothes Men</option><option value="Clothes-Women">Clothes Women</option></select>
-<br>
-<br>
-  </div>
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="submit" id="button-Login" class="cancelbtn">Create</button>
-  </div>
-  
-</form>
+<div class="formContainer">
+  <h1 class="formTitle">Създай продукт</h1>
+  <div class="titleLine"></div>
+
+  <form class="authForm" onsubmit="createForm(event)">
+
+    <div>
+      <label for="name"><b>Име на продукт</b></label>
+      <br>
+      <input type="text" id="name"
+        name="name" required>
+      <br>
+      <label for="brand"><b>Марка</b></label>
+      <br>
+      <input type="text" id="brand"
+        name="brand" required>
+      <br>
+      <label for="type"><b>Вид на продукт</b></label>
+      <br>
+      <input type="text" id="type" placeholder="памперси" name="type"><button
+        type="button">asd</button>
+      <br>
+      <label for="price"><b>Цена</b></label>
+      <br>
+      <input type="number" id="price" name="price">
+      <br>
+      <label for="quantity"><b>Количество</b></label>
+      <br>
+      <input type="numer" id="quantity" name="quantity">
+      <br>
+      <label for="description"><b>Описание</b></label>
+      <br>
+      <input type="text" id="description" name="description">
+      <br>
+      <label for="imgUrl"><b>Линк към снимка на продъкта</b></label>
+      <br>
+      <input type="url" id="imgUrl" placeholder="https://примеренАдрес.jpg"
+        name="imgUrl" required>
+      <br>
+      <br>
+    </div>
+    <div>
+      <button class="authButton" type="submit">Създай</button>
+    </div>
+  </form>
+
+</div>
+
 {{> footer}}

@@ -9,11 +9,16 @@ function registerPartial() {
 
 function navigateHandler(e) {
     e.preventDefault();
-    console.log(e.target.tagName)
+    console.log(e.target.parentNode.parentNode)
+
     if (e.target.tagName == 'BUTTON' || e.target.tagName == 'LI' ||
         e.target.tagName == 'SPAN' ||
         e.target.tagName == 'IMG') {
         let url = new URL(e.target.parentNode.href);
+        navigate(url.pathname);
+    }
+    if (e.target.parentNode.parentNode.tagName == 'A') {
+        let url = new URL(e.target.parentNode.parentNode.href);
         navigate(url.pathname);
     }
     if (e.target.tagName == 'A') {
@@ -47,6 +52,14 @@ function activateMenu(x) {
     x.classList.toggle("change");
 
     let dropDownContant = document.getElementById('dropDownContant');
+    dropDownContant.style.display = dropDownContant.style.display == 'none' ?
+        'block' : 'none';
+
+}
+
+function activateSettingsMenu(x) {
+
+    let dropDownContant = document.getElementById('dropDownSettings');
     dropDownContant.style.display = dropDownContant.style.display == 'none' ?
         'block' : 'none';
 
@@ -114,25 +127,26 @@ function displayErrorMessage(message, formId) {
 function createForm(e) {
     e.preventDefault();
 
-    let title = document.getElementById('create-Title').value;
-    let description = document.getElementById('create-Description').value;
-    let image = document.getElementById('create-Image').value;
-    let price = document.getElementById('create-Price').value;
-    let quantity = document.getElementById('create-Quantity').value;
-    let type = document.getElementById('create-Type').value;
-    let category = document.getElementById('categorySection-Create').value;
+    let title = document.getElementById('name').value;
+    let description = document.getElementById('description').value;
+    let image = document.getElementById('imgUrl').value;
+    let price = document.getElementById('price').value;
+    let quantity = document.getElementById('quantity').value;
+    let type = document.getElementById('type').value;
+    let category = document.getElementById('type').value;
+    let brand = document.getElementById('brand').value;
 
 
-    if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
+    /* if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
         displayErrorMessage('You should fill all the fields !', 'createForm');
         return;
     }
     if (title.length > 20) {
         displayErrorMessage('The title SHOULD be no more than 20 letters!', 'createForm');
         return
-    }
+    } */
 
-    auth.create(title, type, category, description, image, price, quantity)
+    auth.create(title, type, category, description, image, price, quantity, brand)
         .then(res => {
 
             navigate('/home');
@@ -370,16 +384,16 @@ function removeAdmin(e) {
 
 
 
-function showCategory(e){    
+function showCategory(e) {
     e.preventDefault();
 
     let categoryDropDown = document.getElementById('categoryDropDown');
-    categoryDropDown.style.display = categoryDropDown.style.display == 'none'?
-    'block':'none';
+    categoryDropDown.style.display = categoryDropDown.style.display == 'none' ?
+        'block' : 'none';
 
     let categoryIcon = document.getElementsByClassName('category')[0].parentNode;
-    
-     categoryIcon.classList.toggle('change');
+
+    categoryIcon.classList.toggle('change');
 
 }
 

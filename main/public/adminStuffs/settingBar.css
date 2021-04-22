@@ -1,7 +1,36 @@
-.settingsBar{
-    font-size:3rem;
-    float:right;
-    color:#00008B;
-    margin-right:2%;
-    margin-top:1%;
+.settingsBar span {
+    font-size: 3rem;
+    float: right;
+    color: #00008B;
+    margin-right: 5%;
+    margin-top: 1%;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.settingsBar {
+    float: right;
+}
+
+#dropDownSettings a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    margin-bottom: 6px;
+}
+
+#dropDownSettings a:hover {
+    text-decoration: underline;
+}
+
+#dropDownSettings {
+    font-size: 15pt;
+    border: 1px #0441d5 solid;
+    border-radius: 10px;
+    background: rgb(15, 90, 237, 0.5);
+    padding: 20px 80px 10px 20px;
+    margin-right: 35%;
+    margin-top: 20%;
+    z-index: 1000;
+    margin-bottom: -60%;
 }

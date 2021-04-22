@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./public/adminStuffs/settingBar.css">
     <link rel="stylesheet" href="./public/auth/authForms.css">
 
-   <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
@@ -33,22 +33,22 @@
     <script src="./node_modules/handlebars/dist/handlebars.js"></script>
 
 
-   <script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg",
-    authDomain: "kosmosdb-44938.firebaseapp.com",
-    projectId: "kosmosdb-44938",
-    storageBucket: "kosmosdb-44938.appspot.com",
-    messagingSenderId: "407141750177",
-    appId: "1:407141750177:web:2a6810f1520c9451aba7e0",
-    measurementId: "G-JEEN9P60YQ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg",
+            authDomain: "kosmosdb-44938.firebaseapp.com",
+            projectId: "kosmosdb-44938",
+            storageBucket: "kosmosdb-44938.appspot.com",
+            messagingSenderId: "407141750177",
+            appId: "1:407141750177:web:2a6810f1520c9451aba7e0",
+            measurementId: "G-JEEN9P60YQ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
     <script src="./scripts/service.js" defer></script>
     <script src="./scripts/router.js" defer></script>
@@ -65,21 +65,23 @@
                     <div class="bar3"></div>
                 </div>
                 <div onclick="navigateHandler(event)" id="dropDownContant" style="display: none;">
-
-                    <a href="/kosmosShop">Магазин</a>
-                    <br />
-                    <a href="/userProfile/logs">Профил</a>
-                    <br />
+                    <a href="/kosmosShop">Магазин</a> {{#if isLogged}}
+                    <a href="/logout">Излез</a> {{else}}
                     <a href="/login">Влез</a>
-                    <br />
-                    <a href="/register">Регистрирай се</a>
-                    <br>
-                    <a href="/logout">Излез</a>
+                    <a href="/register">Регистрирай се</a> {{/if}}
 
                 </div>
             </div>
-<div class="settingsBar">
-                <a href="">⚙</a>
+            <div class="settingsBar" onclick="activateSettingsMenu(this)">
+                <div>
+                    <span>⚙</span>
+                </div>
+                <div onclick="navigateHandler(event)" id="dropDownSettings" style="display: none;">
+
+                    <a href="/kosmosShop">Профил</a>
+                    <a href="/create">Създай</a>
+
+                </div>
             </div>
 
             <div class="inner-header flex">
@@ -106,159 +108,60 @@
                                 </g>
                             </svg>
             </div>
-            
+
         </div>
     </script>
 
     <script id="footerTemp" type="text/x-handlebars">
         <footer id="footer">
             <svg viewBox="0 0 120 32">
-        <defs>
-            <filter id="goo">
-                <feGaussianBlur in="SourceGraphic"
-                    stdDeviation="1" result="blur" />
-                    <feColorMatrix in="blur"
-                        mode="matrix" values="1 0 0 0 0
-                        0 1 0 0 0
-                        0 0 1 0 0
-                        0 0 0 13 -9" result="goo" />
-                    </filter>
-                    <path id="wave" d="M 0,10 C 30,10
-                        30,15 60,15 90,15 90,10 120,10
-                        150,10 150,15 180,15 210,15
-                        210,10 240,10 v 28 h -240 z" />
-                    </defs>
-
-                    <use id="wave3" class="wave"
-                        xlink:href="#wave" x="0" y="-2"></use>
-                    <use id="wave2" class="wave"
-                        xlink:href="#wave" x="0" y="0"></use>
-                    <g class="gooeff"
-                        filter="url(#goo)">
-                        <circle class="drop drop1"
-                            cx="20" cy="2" r="8.8" />
-                            <circle class="drop drop2"
-                                cx="25" cy="2.5" r="7.5"
-                                />
-                                <circle class="drop
-                                    drop3" cx="16"
-                                    cy="2.8" r="9.2" />
-                                    <circle class="drop
-                                        drop4" cx="18"
-                                        cy="2" r="8.8"
-                                        />
-                                        <circle
-                                            class="drop
-                                            drop5"
-                                            cx="22"
-                                            cy="2.5"
-                                            r="7.5" />
-                                            <circle
-                                                class="drop
-                                                drop6"
-                                                cx="26"
-                                                cy="2.8"
-                                                r="9.2"
-                                                />
-                                                <circle
-                                                    class="drop
-                                                    drop1"
-                                                    cx="5"
-                                                    cy="4.4"
-                                                    r="8.8"
-                                                    />
-                                                    <circle
-                                                        class="drop
-                                                        drop2"
-                                                        cx="5"
-                                                        cy="4.1"
-                                                        r="7.5"
-                                                        />
-                                                        <circle
-                                                            class="drop
-                                                            drop3"
-                                                            cx="8"
-                                                            cy="3.8"
-                                                            r="9.2"
-                                                            />
-                                                            <circle
-                                                                class="drop
-                                                                drop4"
-                                                                cx="3"
-                                                                cy="4.4"
-                                                                r="8.8"
-                                                                />
-                                                                <circle
-                                                                    class="drop
-                                                                    drop5"
-                                                                    cx="7"
-                                                                    cy="4.1"
-                                                                    r="7.5"
-                                                                    />
-                                                                    <circle
-                                                                        class="drop
-                                                                        drop6"
-                                                                        cx="10"
-                                                                        cy="4.3"
-                                                                        r="9.2"
-                                                                        />
-                                                                        <circle
-                                                                            class="drop
-                                                                            drop1"
-                                                                            cx="1.2"
-                                                                            cy="5.4"
-                                                                            r="8.8"
-                                                                            />
-                                                                            <circle
-                                                                                class="drop
-                                                                                drop2"
-                                                                                cx="5.2"
-                                                                                cy="5.1"
-                                                                                r="7.5"
-                                                                                />
-                                                                                <circle
-                                                                                    class="drop
-                                                                                    drop3"
-                                                                                    cx="10.2"
-                                                                                    cy="5.3"
-                                                                                    r="9.2"
-                                                                                    />
-                                                                                    <circle
-                                                                                        class="drop
-                                                                                        drop4"
-                                                                                        cx="3.2"
-                                                                                        cy="5.4"
-                                                                                        r="8.8"
-                                                                                        />
-                                                                                        <circle
-                                                                                            class="drop
-                                                                                            drop5"
-                                                                                            cx="14.2"
-                                                                                            cy="5.1"
-                                                                                            r="7.5"
-                                                                                            />
-                                                                                            <circle
-                                                                                                class="drop
-                                                                                                drop6"
-                                                                                                cx="17.2"
-                                                                                                cy="4.8"
-                                                                                                r="9.2"
-                                                                                                />
-                                                                                                <use
-                                                                                                    id="wave1"
-                                                                                                    class="wave"
-                                                                                                    xlink:href="#wave"
-                                                                                                    x="0"
-                                                                                                    y="1"
-                                                                                                    />
-                                                                                                </g>
-                                                                                            </svg>
-                                                                                         
-                                                                                            <div id="socialMediaContainer">
-        <a href="">
-        <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/>
-        </a>
-        </div>
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic"
+					stdDeviation="1" result="blur" />
+				<feColorMatrix in="blur"
+					mode="matrix" values="1 0 0 0 0
+					0 1 0 0 0
+					0 0 1 0 0
+					0 0 0 13 -9" result="goo" />
+			</filter>
+			<path id="wave" d="M 0,10 C 30,10
+				30,15 60,15 90,15 90,10 120,10
+				150,10 150,15 180,15 210,15
+				210,10 240,10 v 28 h -240 z" />
+		</defs>
+		<use id="wave3" class="wave"
+			xlink:href="#wave" x="0" y="-2"></use>
+		<use id="wave2" class="wave"
+			xlink:href="#wave" x="0" y="0"></use>
+		<g class="gooeff"
+			filter="url(#goo)">
+			<circle class="drop drop1"cx="20" cy="2" r="8.8" />
+			<circle class="drop drop2"cx="25" cy="2.5" r="7.5"/>
+			<circle class="drop drop3" cx="16"cy="2.8" r="9.2" />
+			<circle class="drop drop4" cx="18"cy="2" r="8.8"/>
+			<circle class="drop drop5"cx="22"cy="2.5"r="7.5" />
+			<circle class="drop drop6"cx="26"cy="2.8"r="9.2"/>
+			<circle class="drop drop1"cx="5"cy="4.4"r="8.8"/>
+			<circle class="drop drop2"cx="5"cy="4.1"r="7.5"/>
+			<circle class="drop drop3"cx="8"cy="3.8"r="9.2"/>
+			<circle class="drop drop4"cx="3"cy="4.4"r="8.8"/>
+			<circle class="drop drop5"cx="7"cy="4.1"r="7.5"/>
+			<circle class="drop drop6"cx="10"cy="4.3"r="9.2"/>
+			<circle class="drop drop1"cx="1.2"cy="5.4"r="8.8"/>
+			<circle class="drop drop2"cx="5.2"cy="5.1"r="7.5"/>
+			<circle class="drop drop3"cx="10.2"cy="5.3"r="9.2"/>
+			<circle class="drop drop4"cx="3.2"cy="5.4"r="8.8"/>
+			<circle class="drop drop5"cx="14.2"cy="5.1"r="7.5"/>
+			<circle class="drop drop6"cx="17.2"cy="4.8"r="9.2"	/>
+			<use id="wave1"class="wave"xlink:href="#wave"x="0"y="1"/>
+		</g>
+	</svg>
+            <div id="socialMediaContainer">
+                <a href="">
+                    <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png" />
+                </a>
+            </div>
         </footer>
 
     </script>

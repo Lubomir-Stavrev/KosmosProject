@@ -5,24 +5,24 @@
 
 <main>
     <div class="wrap">
-<div class="category" onclick="showCategory(event)">
-<div>
-<div class="categoryLine"></div>
-<div class="categoryLine"></div>
-<div class="categoryLine"></div>
-</div>
-</div> 
-<div id="categoryDropDown" style="display:none;">
- <a href="/kosmosShop">Жени</a>
-                    <br />
-                    <a href="/userProfile/logs">Мъже</a>
-                    <br />
-                    <a href="/login">Еко</a>
-                    <br />
-                    <a href="/register">Да</a>
-                    <br>
-                    <a href="/logout">Не</a>
-</div>
+        <div class="category" onclick="showCategory(event)">
+            <div>
+                <div class="categoryLine"></div>
+                <div class="categoryLine"></div>
+                <div class="categoryLine"></div>
+            </div>
+        </div>
+        <div id="categoryDropDown" style="display:none;">
+            <a href="/kosmosShop">Жени</a>
+            <br />
+            <a href="/userProfile/logs">Мъже</a>
+            <br />
+            <a href="/login">Еко</a>
+            <br />
+            <a href="/register">Да</a>
+            <br>
+            <a href="/logout">Не</a>
+        </div>
 
         <div class="search">
             <input type="text" class="searchTerm"
@@ -34,66 +34,25 @@
         </div>
     </div>
     <div id="posts" onclick="navigateHandler(event)">
-
+        {{#each products}}
         <div onclick="navigateHandler(event)" class="post">
-            <h1>Препарат</h1>
-            <a href="/details/1">
+            <h1>{{title}}</h1>
+            <a href="/details/{{productId}}">
 
-                <img class="product-Image"
-                    src="https://yosial.com/wp-content/uploads/2020/05/preparat-za-toaletna-domestos-white-750-ml.png"
-                    alt="">
-                <div class="middle">
-                    <div class="textButton">Купи Веро за
-                        10лв</div>
-                </div>
-                <h1>10лв</h1>
+                <a href="/details/{{productId}}">
+                    <img class="product-Image"
+                        src={{image}}
+                        alt="">
+                    <div class="middle">
+                        <div class="textButton">Купи {{title}} за
+                            {{price}}лв</div>
+                    </div>
+                </a>
+                <h1>{{price}}лв</h1>
 
             </a>
-
         </div>
-        <div onclick="navigateHandler(event)" class="post">
-            <h1>Веро</h1>
-            <a href="/details/id">
-
-                <img class="product-Image"
-                    src="https://static.ivis.bg/thumbs/3/exo-hydrogel-vero-min.jpg"
-                    alt="">
-                <div class="middle">
-                    <div class="textButton">Купи Веро за
-                        10лв</div>
-                </div>
-            </a>
-
-        </div>
-        <div onclick="navigateHandler(event)" class="post">
-            <h1>Носни кърпички</h1>
-            <a href="/details/id">
-
-                <img class="product-Image"
-                    src="https://shop.lillydrogerie.bg/media/catalog/product/cache/1d61232755c257eb23e203a98c67893b/3/8/3800207182243.jpg"
-                    alt="">
-                <div class="middle">
-                    <div class="textButton">Купи Веро за
-                        10лв</div>
-                </div>
-            </a>
-
-        </div>
-        <div onclick="navigateHandler(event)" class="post">
-            <h1>Памперси</h1>
-            <a href="/details/id">
-
-                <img class="product-Image"
-                    src="https://uploads.remediumapi.com/5ecc40af6af72c3ad4d4db1e/69806/c406175c319c73398bd9f8adb61f48fd/480.jpeg"
-                    alt="">
-
-                <div class="middle">
-                    <div class="textButton">Купи Веро за
-                        10лв</div>
-                </div>
-            </a>
-
-        </div>
+        {{/each}}
 
     </main>
     {{> footer}}
