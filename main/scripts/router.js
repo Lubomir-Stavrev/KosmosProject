@@ -9,6 +9,7 @@ const routs = {
     'register': '../templates/auth/register.hbs',
     'create': '../templates/auth/createProduct.hbs',
     'edit': '../templates/auth/editProduct.hbs',
+    'cart': '../templates/shop/shoppingCart.hbs',
 }
 
 async function router(path, condition) {
@@ -72,4 +73,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/details/-MYtuvpHgydrxLmQkEuV');
+navigate('/cart');

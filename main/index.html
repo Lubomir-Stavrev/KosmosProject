@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="./public/shop/category.css">
     <link rel="stylesheet" href="./public/adminStuffs/settingBar.css">
     <link rel="stylesheet" href="./public/auth/authForms.css">
+    <link rel="stylesheet" href="./public/shoppingCart/shoppingCartNav.css">
+    <link rel="stylesheet" href="./public/shoppingCart/shoppingCart.css">
+
 
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
@@ -72,6 +75,7 @@
 
                 </div>
             </div>
+            {{#if isLogged}}
             <div class="settingsBar" onclick="activateSettingsMenu(this)">
                 <div>
                     <span>⚙</span>
@@ -83,6 +87,17 @@
 
                 </div>
             </div>
+            {{else}}
+            <div id=shoppingCartNav onCLick='navigateHandler(event)'>
+                <div>
+                    <span>
+                        <a href="/cart">
+                            <img src="../images/cart.png"/>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            {{/if}}
 
             <div class="inner-header flex">
 
@@ -118,23 +133,23 @@
 		<defs>
 			<filter id="goo">
 				<feGaussianBlur in="SourceGraphic"
-					stdDeviation="1" result="blur" />
+                stdDeviation="1" result="blur" />
 				<feColorMatrix in="blur"
-					mode="matrix" values="1 0 0 0 0
-					0 1 0 0 0
+                mode="matrix" values="1 0 0 0 0
+                0 1 0 0 0
 					0 0 1 0 0
 					0 0 0 13 -9" result="goo" />
-			</filter>
-			<path id="wave" d="M 0,10 C 30,10
+                </filter>
+                <path id="wave" d="M 0,10 C 30,10
 				30,15 60,15 90,15 90,10 120,10
 				150,10 150,15 180,15 210,15
 				210,10 240,10 v 28 h -240 z" />
-		</defs>
-		<use id="wave3" class="wave"
+            </defs>
+            <use id="wave3" class="wave"
 			xlink:href="#wave" x="0" y="-2"></use>
-		<use id="wave2" class="wave"
+            <use id="wave2" class="wave"
 			xlink:href="#wave" x="0" y="0"></use>
-		<g class="gooeff"
+            <g class="gooeff"
 			filter="url(#goo)">
 			<circle class="drop drop1"cx="20" cy="2" r="8.8" />
 			<circle class="drop drop2"cx="25" cy="2.5" r="7.5"/>
