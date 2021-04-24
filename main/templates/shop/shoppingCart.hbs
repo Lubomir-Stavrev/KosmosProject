@@ -1,4 +1,5 @@
 {{> header}}
+{{#if buys}}
 <div id="cartContainer">
   <h1 class="formTitle">Количка</h1>
   <div class="titleLine"></div>
@@ -6,17 +7,18 @@
   <div id="cartProductsContainer">
     <table>
       <tbody>
+        {{#each buys}}
         <tr>
           <td>
             <img
-              src="https://static.ivis.bg/thumbs/3/eho-hydro-balsam-450ml-min.jpg"
+              src={{image}}
               class="rowImage">
           </td>
           <td>
             <div class="textInfo">
 
               <h4>
-                <a>Drench &amp; Quench Serum</a>
+                <a>{{title}}</a>
               </h4>
             </div>
           </td>
@@ -25,98 +27,29 @@
           <td class="rightTableContainer quantityContainer">
 
             <button>-</button>
-            <input class="quantityInput">
+            <input value="1" max="12" min="1" class="quantityInput">
             <button>+</button>
 
           </td>
 
           <td class="rightTableContainer productPrice">
-            <span>27.00лв</span>
+            <span>{{price}}лв</span>
 
           </td>
 
           <td class="rightTableContainer removeFromList">
-            <a>
+            <a href="/remove/{{productId}}"
+              onclick="removeProductFromCart(event)">
               X
             </a>
           </td>
 
         </tr>
-        <tr>
-          <td>
-            <img
-              src="https://static.ivis.bg/thumbs/3/exo-hydrogel-vero-min.jpg"
-              class="rowImage">
-          </td>
-          <td>
-            <div class="textInfo">
+        {{/each}}
 
-              <h4>
-                <a>Drench &amp; Quench Serum</a>
-              </h4>
-            </div>
-          </td>
-
-
-          <td class="rightTableContainer quantityContainer">
-
-            <button>-</button>
-            <input class="quantityInput">
-            <button>+</button>
-
-          </td>
-
-          <td class="rightTableContainer productPrice">
-            <span>27.00лв</span>
-
-          </td>
-
-          <td class="rightTableContainer removeFromList">
-            <a>
-              X
-            </a>
-          </td>
-
-        </tr>
-        <tr>
-          <td>
-            <img
-              src="http://konsumativite.com/image/cache/data/produkti/domestos-592x308.jpg"
-              class="rowImage">
-          </td>
-          <td>
-            <div class="textInfo">
-
-              <h4>
-                <a>Drench &amp; Quench асд ас дас дас дас дас д асд asd asd as
-                  das da s Serum</a>
-              </h4>
-            </div>
-          </td>
-
-
-          <td class="rightTableContainer quantityContainer">
-
-            <button>-</button>
-            <input class="quantityInput">
-            <button>+</button>
-
-          </td>
-
-          <td class="rightTableContainer productPrice">
-            <span>27.00лв</span>
-
-          </td>
-
-          <td class="rightTableContainer removeFromList">
-            <a>
-              X
-            </a>
-          </td>
-
-        </tr>
       </tbody>
     </table>
+
 
   </div>
 
@@ -182,6 +115,11 @@
   </div>
   <br>
   <button class="buyCartButton">Поръчай</button>
+  {{else}}
+  <div id="emptyCartContainer">
+    <h1>Количката е празна</h1>
+    <img src="../../images/emptyCart.png" alt="">
+  </div>
+  {{/if}}
 </div>
-
 {{> footer}}

@@ -263,13 +263,12 @@ function addToCart(e) {
         price: tempData.price,
         productId: tempData.productId,
         title: tempData.title,
-        productPath: window.location.href,
-        productModel: 'watch'
+        productPath: window.location.href
     }
-    var a = [];
-    a = JSON.parse(localStorage.getItem('buys')) || [];
-    a.push(data);
-    localStorage.setItem('buys', JSON.stringify(a));
+    var prod = [];
+    prod = JSON.parse(localStorage.getItem('buys')) || [];
+    prod.push(data);
+    localStorage.setItem('buys', JSON.stringify(prod));
 
 
     navigate('/cart')
@@ -287,7 +286,8 @@ function requestDelete(e) {
 
 function removeProductFromCart(e) {
     e.preventDefault();
-    let productIdToRemove = e.target.parentNode.href.split('/')[4];
+    console.log(e.target);
+    let productIdToRemove = e.target.href.split('/')[4];
 
     let localeStorageBuys = [...JSON.parse(localStorage.getItem('buys'))];
     console.log(localeStorageBuys.length);
