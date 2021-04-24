@@ -397,4 +397,15 @@ function showCategory(e) {
 
 }
 
+function showCartAdressInfo(e) {
+    e.preventDefault();
+    e.target.textContent = e.target.textContent == '- скрий' ? '+ добави' : '- скрий';
+
+    let categoryDropDown = document.getElementById('cartInfoAddressContainer');
+    categoryDropDown.style.display = categoryDropDown.style.display == 'none' ?
+        'block' : 'none';
+
+
+}
+
 registerPartial();
