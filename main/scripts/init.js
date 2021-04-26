@@ -9,7 +9,7 @@ function registerPartial() {
 
 function navigateHandler(e) {
     e.preventDefault();
-    console.log(e.target.parentNode.parentNode)
+
 
     if (e.target.tagName == 'BUTTON' || e.target.tagName == 'LI' ||
         e.target.tagName == 'SPAN' ||
@@ -42,7 +42,7 @@ function changeColorOnHover(e) {
     row.forEach(r => {
         r.addEventListener('mouseover', event => {
 
-            console.log(event.target);
+
         })
     })
 
@@ -256,6 +256,11 @@ function sendUnlike(e) {
 function addToCart(e) {
     e.preventDefault();
 
+
+    let cart = document.getElementById('shoppingCartNav');
+    console.log(cart);
+    cart.classList.toggle('toggleShake');
+
     let data = {
 
         description: tempData.description,
@@ -267,11 +272,34 @@ function addToCart(e) {
     }
     var prod = [];
     prod = JSON.parse(localStorage.getItem('buys')) || [];
-    prod.push(data);
-    localStorage.setItem('buys', JSON.stringify(prod));
+
+    let isAlreadyAdded = false;
+    if (prod.length > 0 && prod) {
+        Object.values(prod).forEach(el => {
+            if (el.productId == data.productId) {
+                isAlreadyAdded = true;
+                return;
+
+            }
+        })
+        if (!isAlreadyAdded) {
+            prod.push(data);
+            localStorage.setItem('buys', JSON.stringify(prod));
+        }
 
 
-    navigate('/cart')
+    } else {
+        prod.push(data);
+        localStorage.setItem('buys', JSON.stringify(prod));
+    }
+
+    setTimeout(function() {
+        navigate('/kosmosShop')
+    }, 2000)
+
+
+
+
 }
 
 function requestDelete(e) {
@@ -286,11 +314,11 @@ function requestDelete(e) {
 
 function removeProductFromCart(e) {
     e.preventDefault();
-    console.log(e.target);
+
     let productIdToRemove = e.target.href.split('/')[4];
 
     let localeStorageBuys = [...JSON.parse(localStorage.getItem('buys'))];
-    console.log(localeStorageBuys.length);
+
 
     let index = -1;
     Object.entries(localeStorageBuys).forEach(el => {
@@ -298,7 +326,7 @@ function removeProductFromCart(e) {
         if (el[1].productId == productIdToRemove) {
 
             localeStorageBuys.splice(index, 1);
-            console.log(localeStorageBuys.length);
+
             localStorage.setItem('buys', JSON.stringify(localeStorageBuys));
             navigate('/cart')
         }
@@ -406,6 +434,42 @@ function showCartAdressInfo(e) {
         'block' : 'none';
 
 
+}
+
+function showAddCategory(e) {
+    e.preventDefault();
+
+    let containerToShow = document.getElementById("addCategoryContainer");
+    containerToShow.style.display = containerToShow.style.display == "block" ? 'none' : 'block';
+
+}
+
+function addCategory(e) {
+    e.preventDefault();
+    let newCategoryName = document.getElementById('newCategoryName');
+    if (!newCategoryName.value) {
+        return;
+    }
+    let containerToShow = document.getElementById("addCategoryContainer");
+    containerToShow.style.display = containerToShow.style.display == "block" ? 'none' : 'block';
+
+    let categoryList = document.getElementById('selectCategory');
+    let newCategory = document.createElement('option');
+    newCategory.textContent = `${newCategoryName.value}`;
+    newCategory.setAttribute("value", newCategoryName.value);
+
+    categoryList.appendChild(newCategory);
+
+
+    auth.addNewCategory(newCategoryName.value)
+        .then(res => {
+            if (res == 'Error') {
+                displayErrorMessage('The email is already taken!', 'registerForm');
+                console.log(res);
+                return;
+            }
+            console.log(res);
+        })
 }
 
 registerPartial();

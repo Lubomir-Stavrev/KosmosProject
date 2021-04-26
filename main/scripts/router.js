@@ -24,7 +24,11 @@ async function router(path, condition) {
         case 'kosmosShop':
             let productsData = await auth.getAllProducts();
             tempData.products = productsData.all;
-            console.log(tempData);
+            break;
+        case 'create':
+            let categoryData = await auth.getCategoryNames();
+            console.log(categoryData)
+            tempData.categories = categoryData;
             break;
     }
 
@@ -73,4 +77,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/cart');
+navigate('/create');

@@ -387,6 +387,35 @@ const auth = {
                 admin: false
             })
         })
+    },
+
+    addNewCategory(name) {
+
+        return fetch("https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/categoryNames/.json", {
+            method: 'POST',
+            body: JSON.stringify({
+                name
+            })
+        }).then(res => res.json())
+    },
+
+    async getCategoryNames() {
+        return await fetch("https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/categoryNames/.json")
+            .then(res => res.json())
+            .then(data => {
+                let names = []
+                if (data) {
+                    Object.values(data).forEach(el => {
+                        if (el.name) {
+                            names.push({ name: el.name });
+
+                        }
+                    })
+
+                }
+
+                return names;
+            })
     }
 
 }

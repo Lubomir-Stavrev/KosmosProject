@@ -19,8 +19,27 @@
       <br>
       <label for="type"><b>Вид на продукт</b></label>
       <br>
-      <input type="text" id="type" placeholder="памперси" name="type"><button
-        type="button">asd</button>
+      <select name="" id="selectCategory">
+        <option value="">--категория--</option>
+        {{#each categories}}
+        <option value={{name}}>{{name}}</option>
+        {{/each}}
+      </select>
+      <div id="addCategoryButtonContainer">
+        <a onclick="showAddCategory(event)" style="cursor: pointer;">
+          <span>
+            +
+          </span>
+          <span style="display: none;" id="addCategoryButton">
+            Добави категория
+          </span>
+        </a>
+      </div>
+      <div id="addCategoryContainer" style="display: none;">
+        <label for="newCategory">Име на категория</label>
+        <input type="text" id="newCategoryName">
+        <button onclick="addCategory(event)">Добави</button>
+      </div>
       <br>
       <label for="price"><b>Цена</b></label>
       <br>

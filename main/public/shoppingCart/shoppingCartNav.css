@@ -1,22 +1,73 @@
 #shoppingCartNav {
-    float: right;
+    position: fixed;
+    right: 0;
+    z-index: 1000;
 }
 
 #shoppingCartNav div span img {
     max-width: 100px;
     width: 40px;
-    margin-top: 27pt;
-    margin-right: 20pt;
+    margin-top: 15pt;
+    margin-right: 15pt;
     cursor: pointer;
     transition: 0.4s;
     -webkit-transition: 0.4s;
     -moz-transition: 0.4s;
     -ms-transition: 0.4s;
     -o-transition: 0.4s;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #shoppingCartNav div span img:hover {
     width: 45px;
     position: inherit;
     margin-bottom: -5px;
+}
+
+.toggleShake div span img {
+    animation: shakeCart 1.5s .5s ease-out;
+    -webkit-animation: shakeCart 1.5s .5s ease-out;
+}
+
+@keyframes shakeCart {
+    0% {
+        transform: scale(1.5);
+        transform: rotate(15deg);
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+    }
+    25% {
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -moz-transform: rotate(-15deg);
+        -ms-transform: rotate(-15deg);
+        -o-transform: rotate(-15deg);
+    }
+    50% {
+        transform: rotate(15deg);
+        -webkit-transform: rotate(15deg);
+        -moz-transform: rotate(15deg);
+        -ms-transform: rotate(15deg);
+        -o-transform: rotate(15deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -moz-transform: rotate(-15deg);
+        -ms-transform: rotate(-15deg);
+        -o-transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(1deg);
+        -webkit-transform: rotate(1deg);
+        -moz-transform: rotate(1deg);
+        -ms-transform: rotate(1deg);
+        -o-transform: rotate(1deg);
+    }
 }

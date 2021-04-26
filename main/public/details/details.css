@@ -21,8 +21,9 @@
 #detailsImage {
     border-left: 2px solid #00308F;
     border-radius: 100%;
-    max-width: 400px;
-    max-height: 500px;
+    max-width: 600px;
+    max-height: 450px;
+    width: 450px;
     min-width: 40px;
     min-height: 50px;
     -webkit-border-radius: 100%;
@@ -92,6 +93,7 @@
         width: calc(300px - 5pt);
         border-left: none;
         border-top: 2px solid #00308F;
+        max-height: 400px;
     }
     #detailsInfo {
         margin-right: 0px;

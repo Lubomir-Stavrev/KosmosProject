@@ -1,7 +1,21 @@
 .formContainer {
     text-align: center;
+    justify-content: center;
     margin-top: 10%;
     margin-bottom: 10%;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .formTitle {
@@ -19,6 +33,8 @@
 }
 
 .authForm {
+    text-align: center;
+    justify-content: center;
     color: #0441d5;
     font-size: calc(1.7rem - 6pt);
 }
@@ -72,4 +88,59 @@
     background: rgb(189, 255, 243, 0.1);
     padding: 6px 16px;
     font-size: 1.5rem;
+}
+
+#selectCategory {
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    border: 0;
+    outline: 0;
+    width: calc(22% + 20px);
+    border-bottom: 1px solid #0441d5;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    margin-bottom: 20px;
+}
+
+#addCategoryButtonContainer {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+#addCategoryButtonContainer:hover #addCategoryButton {
+    display: inline-block !important;
+}
+
+#addCategoryContainer {
+    width: 20%;
+    border: #0441d5 1px solid;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    z-index: 1000;
+    background: rgb(189, 255, 243, 0.1);
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#addCategoryContainer label {
+    display: block;
+}
+
+#addCategoryContainer button {
+    border: #0441d5 solid 1px;
+    border-radius: 5px;
+    padding: 4px 8px;
+    color: #00308F;
+    background: rgb(189, 255, 243, 0.0);
+    cursor: pointer;
 }
