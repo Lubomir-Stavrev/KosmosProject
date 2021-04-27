@@ -23,12 +23,21 @@ async function router(path, condition) {
             return;
         case 'kosmosShop':
             let productsData = await auth.getAllProducts();
+            let categoryDataHome = await auth.getCategoryNames();
+
+            tempData.categories = categoryDataHome;
             tempData.products = productsData.all;
             break;
         case 'create':
             let categoryData = await auth.getCategoryNames();
-            console.log(categoryData)
+
             tempData.categories = categoryData;
+            break;
+        case 'cart':
+            const deliveryPrice = 10 //TODO we dont know yet ?!
+            tempData.subtotal = JSON.parse(localStorage.getItem('subtotal'));
+            tempData.sumWithDelivery = Number(JSON.parse(localStorage.getItem('subtotal'))) + deliveryPrice;
+
             break;
     }
 
@@ -77,4 +86,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/create');
+navigate('/cart');

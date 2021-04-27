@@ -1,3 +1,5 @@
+const deliveryPrice = 10 //TODO we dont know yet ?!
+
 function registerPartial() {
 
     let header = document.getElementById('headerTemp').innerHTML;
@@ -292,7 +294,7 @@ function addToCart(e) {
         prod.push(data);
         localStorage.setItem('buys', JSON.stringify(prod));
     }
-
+    localStorage.setItem('subtotal', getTheSubtotal())
     setTimeout(function() {
         navigate('/kosmosShop')
     }, 2000)
@@ -470,6 +472,83 @@ function addCategory(e) {
             }
             console.log(res);
         })
+}
+
+
+function getTheSubtotal() {
+    let prodInCart = JSON.parse(localStorage.getItem('buys'));
+
+    let subtotal = 0;
+    if (prodInCart || prodInCart.length > 0) {
+        Object.values(prodInCart)
+            .forEach(product => {
+                if (product) {
+                    if (product.price) {
+                        subtotal = subtotal + Number(product.price);
+                    }
+                }
+            })
+
+    }
+    subtotal = subtotal.toFixed(2)
+    if (Number(subtotal) < 0) {
+        subtotal = 0;
+    }
+
+
+
+    return subtotal;
+
+}
+
+function changeProductQuantity(e, productPriceForOneQuantity) {
+    e.preventDefault();
+    if (e.target.tagName != 'BUTTON') {
+        return;
+    }
+    let quantityContainer = e.target.parentNode;
+    let quantityInput = quantityContainer.children[1].value;
+
+
+    if (e.target.innerText == '+') {
+        if (Number(quantityInput) < 100) {
+            quantityContainer.children[1].value = Number(quantityInput) + 1;
+            quantityInput = Number(quantityInput) + 1;
+
+        }
+    } else if (e.target.innerText == '-') {
+        if (Number(quantityInput) > 1) {
+            quantityContainer.children[1].value = Number(quantityInput) - 1;
+            quantityInput = Number(quantityInput) - 1;
+        }
+    }
+    var event = new Event('input');
+    quantityContainer.children[1].dispatchEvent(event);
+
+}
+
+function addToPrice(e, productPriceForOneQuantity) {
+    e.preventDefault();
+    let productPriceElement = e.target.parentNode.parentNode.children[3];
+    let quantityInput = e.target.value;
+    let newProductPrice = 0;
+
+    newProductPrice = Number(productPriceForOneQuantity) * Number(quantityInput);
+    productPriceElement.innerText = newProductPrice + 'лв';
+
+    let subtotalElement = document.getElementsByClassName('cartInfoRight')[0];
+    let sumElement = document.getElementsByClassName('cartInfoRight')[2];
+
+    let newSubtotal = 0;
+
+    let allPricesElements = document.getElementsByClassName('productPrice');
+
+    [...allPricesElements].forEach(priceElement => {
+        let price = priceElement.innerText.split('лв')[0];
+        newSubtotal = Number(newSubtotal) + Number(price);
+    })
+    subtotalElement.innerText = newSubtotal + 'лв';
+    sumElement.innerText = newSubtotal + deliveryPrice + 'лв';
 }
 
 registerPartial();

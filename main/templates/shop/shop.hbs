@@ -13,23 +13,20 @@
             </div>
         </div>
         <div id="categoryDropDown" style="display:none;">
-            <a href="/kosmosShop">Жени</a>
-            <br />
-            <a href="/userProfile/logs">Мъже</a>
-            <br />
-            <a href="/login">Еко</a>
-            <br />
-            <a href="/register">Да</a>
+            <a href="/all">Всички</a>
+
+            {{#each categories}}
             <br>
-            <a href="/logout">Не</a>
+            <a href="/{{name}}">{{name}}</a>
+            {{/each}}
+            <br />
         </div>
 
         <div class="search">
             <input type="text" class="searchTerm"
                 placeholder="Какво търсите ?">
             <button type="submit" class="searchButton">
-                <img src="../../images/waterDrop.png"
-                    alt="">
+                <img src="../../images/waterDrop.png">
             </button>
         </div>
     </div>
@@ -41,8 +38,7 @@
 
                 <a href="/details/{{productId}}">
                     <img class="product-Image"
-                        src={{image}}
-                        alt="">
+                        src={{image}}>
                     <div class="middle">
                         <div class="textButton">Купи {{title}} за
                             {{price}}лв</div>
