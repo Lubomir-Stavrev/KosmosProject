@@ -134,9 +134,9 @@ function createForm(e) {
     let image = document.getElementById('imgUrl').value;
     let price = document.getElementById('price').value;
     let quantity = document.getElementById('quantity').value;
-    let type = document.getElementById('type').value;
-    let category = document.getElementById('type').value;
+    let category = document.getElementById('selectCategory').value;
     let brand = document.getElementById('brand').value;
+
 
 
     /* if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
@@ -148,7 +148,7 @@ function createForm(e) {
         return
     } */
 
-    auth.create(title, type, category, description, image, price, quantity, brand)
+    auth.create(title, category, description, image, price, quantity, brand)
         .then(res => {
 
             navigate('/home');
@@ -260,7 +260,6 @@ function addToCart(e) {
 
 
     let cart = document.getElementById('shoppingCartNav');
-    console.log(cart);
     cart.classList.toggle('toggleShake');
 
     let data = {
@@ -349,46 +348,6 @@ function changeCategoryTitle(e) {
     navigate('/home', categoryChange);
 }
 
-function searchAndDisplayProducts(e) {
-    e.preventDefault();
-
-    let searchInput = document.getElementById('searchInput').value.toLowerCase();
-    let currPageProducts = [...document.getElementById('posts').children];
-
-    currPageProducts.forEach(ch => {
-        let title = ch.querySelector('h1') ? ch.querySelector('h1').innerText : '';
-        title = title.toLowerCase();
-        if (!searchInput) {
-            ch.style.display = 'inline-block';
-        } else if (!title.includes(searchInput)) {
-            ch.style.display = 'none';
-        } else if (title.includes(searchInput)) {
-            ch.style.display = 'inline-block';
-        }
-    })
-    let productsCounter = currPageProducts.length - 1;
-    currPageProducts.forEach(ch => {
-
-        if (productsCounter == 0) {
-            let message = document.createElement('h1');
-            message.innerText = 'There is no such a product!';
-            document.getElementById('posts').appendChild(message);
-        }
-        if (ch.style.display == 'none') {
-            productsCounter--;
-        }
-    })
-    let allPosts = [...document.getElementById('posts').children];
-
-    allPosts.forEach(el => {
-        if (el.innerHTML.includes('There is no such a product!') && productsCounter > 0) {
-            let allPosts = document.getElementById('posts');
-            allPosts.removeChild(allPosts.lastChild);
-        }
-
-    })
-
-}
 
 function giveAdmin(e) {
 
@@ -467,10 +426,10 @@ function addCategory(e) {
         .then(res => {
             if (res == 'Error') {
                 displayErrorMessage('The email is already taken!', 'registerForm');
-                console.log(res);
+
                 return;
             }
-            console.log(res);
+
         })
 }
 
@@ -549,6 +508,24 @@ function addToPrice(e, productPriceForOneQuantity) {
     })
     subtotalElement.innerText = newSubtotal + 'лв';
     sumElement.innerText = newSubtotal + deliveryPrice + 'лв';
+}
+
+function searchProducts(e) {
+    e.preventDefault();
+    let inputElement = '';
+    if (e.target.tagName == "IMG") {
+        inputElement = e.target.parentNode.parentNode.children[0];
+    } else if (e.target.tagName == "BUTTON") {
+        inputElement = e.target.parentNode.children[0];
+    }
+    let searchValue = inputElement.value;
+
+    if (!searchValue) {
+        navigate(`/kosmosShop`)
+        return;
+    }
+    navigate(`/kosmosShop/${searchValue}`)
+
 }
 
 registerPartial();

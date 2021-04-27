@@ -1,7 +1,7 @@
 const userModel = firebase.auth();
 
 const addKeyForAuth = 'AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg';
-const productsURL = `https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/.json`;
+const productsURL = `https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app`;
 const usersURL = 'https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/users.json';
 
 
@@ -33,27 +33,26 @@ const auth = {
                 return 'Error';
             })
     },
-    create(title, type, category, description, image, price, quantity, brand) {
+    create(title, category, description, image, price, quantity, brand) {
 
-        return fetch(productsURL, {
+        return fetch(productsURL + '/.json', {
             method: 'POST',
             body: JSON.stringify({
                 title,
-                type,
                 category,
                 description,
                 image,
                 price,
                 quantity,
                 brand,
-                uid: this.getUserData().uid
+                uid: JSON.parse(localStorage.getItem("auth")).uid
             })
         }).then(res => res.json());
     },
 
     edit(title, type, description, image, price, quantity, category, id) {
 
-        return fetch(`https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/products/${id}/.json`, {
+        return fetch(productsURL + `/products/${id}/.json`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title,
@@ -72,34 +71,16 @@ const auth = {
         let allData = [];
         let allProducts = [];
 
-        let allCategories = {
-            accessoriesWomen: [],
-            accessoriesMen: [],
-            clothesMen: [],
-            clothesWomen: []
-        }
 
-        await fetch(productsURL)
+
+        await fetch(productsURL + '/.json')
             .then(res => res.json())
             .then(data => {
                 if (data) {
 
                     Object.entries(data).forEach(el => {
-
-                        allData.push({
-                            uid: el[1].uid,
-                            productId: el[0],
-                            title: el[1].title,
-                            description: el[1].description,
-                            image: el[1].image,
-                            price: el[1].price,
-                            category: el[1].category,
-                            type: el[1].type,
-                            quantity: el[1].quantity,
-                            brand: el[1].brand
-                        })
-                        if (el[1].category == 'Accessories-Men') {
-                            allCategories.accessoriesMen.push({
+                        if (el[0] != 'categoryNames') {
+                            allData.push({
                                 uid: el[1].uid,
                                 productId: el[0],
                                 title: el[1].title,
@@ -108,52 +89,14 @@ const auth = {
                                 price: el[1].price,
                                 category: el[1].category,
                                 type: el[1].type,
-                                quantity: el[1].quantity
-                            })
-                        } else if (el[1].category == 'Accessories-Women') {
-                            allCategories.accessoriesWomen.push({
-                                uid: el[1].uid,
-                                productId: el[0],
-                                title: el[1].title,
-                                description: el[1].description,
-                                image: el[1].image,
-                                price: el[1].price,
-                                category: el[1].category,
-                                type: el[1].type,
-                                quantity: el[1].quantity
-                            })
-
-                        } else if (el[1].category == 'Clothes-Women') {
-                            allCategories.clothesWomen.push({
-                                uid: el[1].uid,
-                                productId: el[0],
-                                title: el[1].title,
-                                description: el[1].description,
-                                image: el[1].image,
-                                price: el[1].price,
-                                category: el[1].category,
-                                type: el[1].type,
-                                quantity: el[1].quantity
-                            })
-
-                        } else if (el[1].category == 'Clothes-Men') {
-                            allCategories.clothesMen.push({
-                                uid: el[1].uid,
-                                productId: el[0],
-                                title: el[1].title,
-                                description: el[1].description,
-                                image: el[1].image,
-                                price: el[1].price,
-                                category: el[1].category,
-                                type: el[1].type,
-                                quantity: el[1].quantity
+                                quantity: el[1].quantity,
+                                brand: el[1].brand
                             })
                         }
                     })
                 }
             })
         allProducts.all = allData
-        allProducts.categories = allCategories;
         return await allProducts
     },
 
@@ -236,7 +179,7 @@ const auth = {
         }
         if (data.email) {
 
-            await fetch(`https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/users.json`)
+            await fetch(productsURL + `/users/.json`)
                 .then(res => res.json())
                 .then(userData => {
                     if (userData) {
@@ -416,6 +359,32 @@ const auth = {
 
                 return names;
             })
+    },
+
+    async getProductsWith(name) {
+        let productsWithName = [];
+
+        let allProducts = await this.getAllProducts();
+        if (allProducts) {
+            if (allProducts.all) {
+
+                Object.entries(allProducts.all).forEach(product => {
+                    if (product[1]) {
+
+                        if (product[1].title) {
+                            if (product[1].title.toLowerCase().includes(name.toLowerCase())) {
+
+                                productsWithName.push(product[1]);
+                            }
+
+                        }
+                    }
+
+                })
+            }
+        }
+
+        return await productsWithName;
     }
 
 }

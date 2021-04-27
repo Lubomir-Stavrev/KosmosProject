@@ -25,7 +25,8 @@
         <div class="search">
             <input type="text" class="searchTerm"
                 placeholder="Какво търсите ?">
-            <button type="submit" class="searchButton">
+            <button onclick="searchProducts(event)" type="submit"
+                class="searchButton">
                 <img src="../../images/waterDrop.png">
             </button>
         </div>
@@ -47,6 +48,12 @@
                 <h1>{{price}}лв</h1>
 
             </a>
+        </div>
+        {{else}}
+        <div class="notFound">
+            <img src="../../images/notFound.png">
+            <h1>Няма намерени продукти</h1>
+
         </div>
         {{/each}}
 

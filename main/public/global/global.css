@@ -25,3 +25,57 @@ a:active {
 a {
     color: unset;
 }
+
+.notFound {
+    text-align: center;
+    justify-content: center;
+    color: #59c4e1
+}
+
+.notFound img {
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    animation: notFoundAnimation 2.5s .5s ease-out infinite;
+    -webkit-animation: notFoundAnimation 2.5s .5s ease-out infinite;
+}
+
+@keyframes notFoundAnimation {
+    0% {
+        transform: rotate(-5deg);
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
+    }
+    25% {
+        transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
+        -moz-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-7deg);
+        -webkit-transform: rotate(-7deg);
+        -moz-transform: rotate(-7deg);
+        -ms-transform: rotate(-7deg);
+        -o-transform: rotate(-7deg);
+    }
+    75% {
+        transform: rotate(7deg);
+        -webkit-transform: rotate(7deg);
+        -moz-transform: rotate(7deg);
+        -ms-transform: rotate(7deg);
+        -o-transform: rotate(7deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+}

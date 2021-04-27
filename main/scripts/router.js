@@ -60,6 +60,11 @@ async function router(path, condition) {
         path = 'edit';
     } else if (path.includes('profile')) {
         tempData.users = await auth.getAllRegisteredUsers();
+    } else if (path.includes('kosmosShop/')) {
+        let name = path.split('/')[1];
+        tempData.products = await auth.getProductsWith(name)
+
+        path = 'kosmosShop'
     }
 
     getTemplate(path)
@@ -86,4 +91,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/cart');
+navigate('/create');
