@@ -1,38 +1,36 @@
-.category .categoryLine{
+.category .categoryLine {
     width: 27px;
-  height: 4px;
-  background-color: #0fbeed;
-  margin: 5px 0;
-  color: #0fbeed;
+    height: 4px;
+    background-color: #0fbeed;
+    margin: 5px 0;
+    color: #0fbeed;
 }
 
-.category{
-    float:left;
-    margin-left:5%;    
-    border:1px solid #0fbeed;
-    border-radius:100%;
+.category {
+    float: left;
+    margin-left: 5%;
+    border: 1px solid #0fbeed;
+    border-radius: 100%;
     padding: 5px 10px;
     background: rgb(15, 90, 237, 0.1);
     transition: 0.4s;
-    cursor:pointer;
-    position:absolute
+    cursor: pointer;
+    position: absolute
 }
 
 .change .category {
-border-radius: 50px;
-    padding: 2px 25px;
+    border-radius: 50px;
+    padding: 2px 15px;
 }
 
-#categoryDropDown{
-    margin-top:50px;
-    margin-left:calc(30px - 1pt);
-  float:right;
-  border:1px solid #0fbeed;
-  color: #0fbeed;
-  background: rgb(15, 90, 237, 0.0);
-  border-radius:10px;
-  padding: 5px 20px 5px 7px;
-  position:absolute;
-  
+#categoryDropDown {
+    margin-top: 50px;
+    margin-left: calc(30px - 1pt);
+    float: right;
+    border: 1px solid #0fbeed;
+    color: #0fbeed;
+    background: rgb(15, 90, 237, 0.0);
+    border-radius: 10px;
+    padding: 5px 20px 5px 7px;
+    position: absolute;
 }
-

@@ -309,7 +309,7 @@ function requestDelete(e) {
     let postId = e.target.parentNode.href.split('/')[4];
 
     auth.deleteProduct(postId).then(res => {
-        navigate('/home');
+        navigate('/kosmosShop');
     })
 }
 
@@ -334,19 +334,7 @@ function removeProductFromCart(e) {
     })
 }
 
-function changeCategoryTitle(e) {
-    e.preventDefault();
 
-    let url = new URL(e.target.parentNode.href).pathname.split('/');
-
-    let categoryChange = url[url.length - 1];
-
-    let categoryTitle = document.getElementById('category-Name-Container');
-
-    categoryChange = categoryChange.replace('-', ' ');
-    categoryTitle.innerHTML = `<h3 id="categories-Name">${categoryChange}</h3>`;
-    navigate('/home', categoryChange);
-}
 
 
 function giveAdmin(e) {
@@ -528,4 +516,16 @@ function searchProducts(e) {
 
 }
 
+
+function productsByCategory(e) {
+    e.preventDefault();
+
+    if (e.target.tagName != "A") {
+        return
+    }
+    let categoryValue = e.target.innerText;
+
+    navigate(`/category/${categoryValue}`)
+
+}
 registerPartial();

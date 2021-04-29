@@ -79,7 +79,7 @@ const auth = {
                 if (data) {
 
                     Object.entries(data).forEach(el => {
-                        if (el[0] != 'categoryNames') {
+                        if (el[0] != 'categoryNames' && el[0] != 'users') {
                             allData.push({
                                 uid: el[1].uid,
                                 productId: el[0],
@@ -183,15 +183,17 @@ const auth = {
                 .then(res => res.json())
                 .then(userData => {
                     if (userData) {
-
                         Object.entries(userData)
                             .forEach(el => {
+                                console.log(el[1].email)
+                                console.log(data.email)
                                 if (el[1].email == data.email) {
-                                    if (el[1].admin == true) {
-                                        data.isAdmin = true;
-                                    } else {
-                                        data.isAdmin = false;
-                                    }
+                                    console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee +>>>>>>>>.')
+
+                                    data.isAdmin = true;
+
+
+
                                 }
                             })
                     }
@@ -282,7 +284,7 @@ const auth = {
     },
 
     deleteProduct(id) {
-        return fetch(`https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/products/${id}/.json`, {
+        return fetch(productsURL + `/${id}/.json`, {
             method: 'DELETE',
         }).then(res => res.json());
     },
@@ -361,7 +363,7 @@ const auth = {
             })
     },
 
-    async getProductsWith(name) {
+    async getProductsWith(name, by) {
         let productsWithName = [];
 
         let allProducts = await this.getAllProducts();
@@ -370,11 +372,21 @@ const auth = {
 
                 Object.entries(allProducts.all).forEach(product => {
                     if (product[1]) {
+                        if (by == 'category') {
+                            if (product[1].category) {
+                                if (product[1].category.toLowerCase().includes(name.toLowerCase())) {
 
-                        if (product[1].title) {
-                            if (product[1].title.toLowerCase().includes(name.toLowerCase())) {
+                                    productsWithName.push(product[1]);
+                                }
 
-                                productsWithName.push(product[1]);
+                            }
+                        } else {
+                            if (product[1].title) {
+                                if (product[1].title.toLowerCase().includes(name.toLowerCase())) {
+
+                                    productsWithName.push(product[1]);
+                                }
+
                             }
 
                         }

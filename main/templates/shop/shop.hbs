@@ -13,11 +13,10 @@
             </div>
         </div>
         <div id="categoryDropDown" style="display:none;">
-            <a href="/all">Всички</a>
-
+            <a onclick="navigateHandler(event)" href="/kosmosShop">Всички</a>
             {{#each categories}}
             <br>
-            <a href="/{{name}}">{{name}}</a>
+            <a onclick="productsByCategory(event)" href="/{{name}}">{{name}}</a>
             {{/each}}
             <br />
         </div>

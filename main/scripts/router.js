@@ -10,6 +10,7 @@ const routs = {
     'create': '../templates/auth/createProduct.hbs',
     'edit': '../templates/auth/editProduct.hbs',
     'cart': '../templates/shop/shoppingCart.hbs',
+    'edit': '../templates/editPage/edit.hbs',
 }
 
 async function router(path, condition) {
@@ -39,6 +40,11 @@ async function router(path, condition) {
             tempData.sumWithDelivery = Number(JSON.parse(localStorage.getItem('subtotal'))) + deliveryPrice;
 
             break;
+        case 'edit':
+
+
+
+            break;
     }
 
     if (path.includes('details/')) {
@@ -62,10 +68,23 @@ async function router(path, condition) {
         tempData.users = await auth.getAllRegisteredUsers();
     } else if (path.includes('kosmosShop/')) {
         let name = path.split('/')[1];
+        let categoryDataHome = await auth.getCategoryNames();
+
+        tempData.categories = categoryDataHome;
         tempData.products = await auth.getProductsWith(name)
 
         path = 'kosmosShop'
     }
+    if (path.includes('category')) {
+        let name = path.split('/')[1];
+        let categoryDataHome = await auth.getCategoryNames();
+
+        tempData.categories = categoryDataHome;
+        tempData.products = await auth.getProductsWith(name, 'category')
+
+        path = 'kosmosShop';
+    }
+    console.log(path)
 
     getTemplate(path)
         .then(res => {
@@ -91,4 +110,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/create');
+navigate('/kosmosShop');

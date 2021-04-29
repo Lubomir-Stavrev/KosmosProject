@@ -1,0 +1,74 @@
+
+{{> header}}
+<div class="formContainer">
+    <h1 class="formTitle">Редактирай продукт</h1>
+    <div class="titleLine"></div>
+
+    <form class="authForm" onsubmit="createForm(event)">
+
+        <div>
+            <label for="name"><b>Име на продукт</b></label>
+            <br>
+            <input type="text" id="name"
+                name="name" value="{{title}}" required>
+            <br>
+            <label for="brand"><b>Марка</b></label>
+            <br>
+            <input type="text" id="brand"
+                name="brand" value="brand" required>
+            <br>
+            <label for="type"><b>Вид на продукт</b></label>
+            <br>
+            <select value="{{category}}" name="{{category}}"
+                id="selectCategory">
+                <option>--категория--</option>
+                {{#each categories}}
+                <option value={{name}}>{{name}}</option>
+                {{/each}}
+            </select>
+            <div id="addCategoryButtonContainer">
+                <a onclick="showAddCategory(event)" style="cursor: pointer;">
+                    <span>
+                        +
+                    </span>
+                    <span style="display: none;" id="addCategoryButton">
+                        Добави категория
+                    </span>
+                </a>
+            </div>
+            <div id="addCategoryContainer" style="display: none;">
+                <label for="newCategory">Име на категория</label>
+                <input type="text" id="newCategoryName">
+                <button onclick="addCategory(event)">Добави</button>
+            </div>
+            <br>
+            <label for="price"><b>Цена</b></label>
+            <br>
+            <input type="number" value="{{price}}" id="price" name="price">
+            <br>
+            <label for="quantity"><b>Количество</b></label>
+            <br>
+            <input type="number" value="{{quantity}}" id="quantity"
+                name="quantity">
+            <br>
+            <label for="description"><b>Описание</b></label>
+            <br>
+            <input type="text" value="{{description}}" id="description"
+                name="description">
+            <br>
+            <label for="imgUrl"><b>Линк към снимка на продъкта</b></label>
+            <br>
+            <input type="url" id="imgUrl"
+                placeholder="https://примеренАдрес.jpg"
+                name="imgUrl" required value="{{image}}">
+            <br>
+            <br>
+        </div>
+        <div>
+            <button class="authButton" type="submit">Редактирай</button>
+        </div>
+    </form>
+
+</div>
+
+{{> footer}}

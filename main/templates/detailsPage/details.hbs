@@ -12,10 +12,20 @@
 <h2>Цена: {{price}}лв</h2>
 <p>{{description}}</p>
 <div>
+    {{#if isAdmin}}
+    <a onclick="requestDelete(event)" href="/delete/{{productId}}">
+<button class="buyButton">Изтрий</button>
+    </a>
+    <a onclick="navigateHandler(event)" href="/edit/{{productId}}">
+<button class="buyButton">Редактирай</button>
+    </a>
+    {{else}}
     <a onclick="addToCart(event)" href="/buy/{{productId}}">
 <button class="buyButton">Купи</button>
     </a>
+    {{/if}}
 </div>
+
                 </div>
         </div>
     </div>
