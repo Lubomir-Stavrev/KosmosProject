@@ -1,0 +1,65 @@
+{{> header}}
+<div id="contactContainer">
+    <div id="socialMediaContainer">
+        <a target="_blank" href="https://www.facebook.com/kosmosonline">
+            <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"
+                />
+        </a>
+    </div>
+    <h1 class="formTitle">Контакти</h1>
+    <div class="titleLine"></div>
+    <div class="leftContacts">
+        <div class="formContainer">
+            <h1 class="formTitle">Свържете се с нас</h1>
+            <div class="titleLine"></div>
+
+            <form class="authForm" onsubmit="editForm(event)">
+
+                <div>
+                    <label for="name"><b>Име и Фамилия</b></label>
+                    <br>
+                    <input type="name"
+                        name="name" required>
+                    <br>
+                    <label for="email"><b>Имейл</b></label>
+                    <br>
+                    <input type="email"
+                        name="email" required>
+                    <br>
+                    <label for="comment"><b>Вашето съобщение</b></label>
+                    <br>
+                    <textarea name="comment" maxlength="100" minlength="10"
+                        form="usrform"></textarea>
+                    <br>
+
+                    <br>
+                </div>
+                <div>
+                    <button class="authButton" type="submit">Изпрати</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="rightContacts">
+
+        <div class="googleMapContainer">
+            <h2>София, Обеля, бл. 107 вх. Б - Партер</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1601.6611781993558!2d23.26874775712579!3d42.73682365383003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa906133df010b%3A0x1d1fb63c73b3c021!2z0JIg0Jgg0JI!5e0!3m2!1sbg!2sbg!4v1619801072885!5m2!1sbg!2sbg"
+                width="600" height="450" style="border:0;" allowfullscreen=""
+                loading="lazy"></iframe>
+        </div>
+
+        <div class="googleMapContainer">
+            <h2>ул. „акад. Дмитрий Лихачов“ 58, 1387 ж.к. Обеля 1, София</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.173573390764!2d23.275763599382536!3d42.74237976017387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa905c721ffe4b%3A0xf33a7eb4113d8eb9!2z0KbQtdC90YLRgNCw0LvQvdCwINCa0L7QvtC_0LXRgNCw0YLQuNCy0L3QsCDQkdCw0L3QutCw!5e0!3m2!1sbg!2sbg!4v1619801417319!5m2!1sbg!2sbg"
+                width="600" height="450" style="border:0;" allowfullscreen=""
+                loading="lazy"></iframe>
+        </div>
+    </div>
+    <div class="fb-post" data-href="https://www.facebook.com/kosmosonline"
+        data-width="500" data-show-text="true"></div>
+</div>
+{{> footer}}

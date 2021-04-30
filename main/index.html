@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="./public/auth/authForms.css">
     <link rel="stylesheet" href="./public/shoppingCart/shoppingCartNav.css">
     <link rel="stylesheet" href="./public/shoppingCart/shoppingCart.css">
+    <link rel="stylesheet" href="./public/home/contacts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
@@ -68,10 +70,12 @@
                     <div class="bar3"></div>
                 </div>
                 <div onclick="navigateHandler(event)" id="dropDownContant" style="display: none;">
-                    <a href="/kosmosShop">Магазин</a> {{#if isLogged}}
+                    <a href="/kosmosShop">Магазин</a>
+                    <a href="/contacts">Контакти</a> {{#if isLogged}}
                     <a href="/logout">Излез</a> {{else}}
                     <a href="/login">Влез</a>
                     <a href="/register">Регистрирай се</a> {{/if}}
+
 
                 </div>
             </div>
@@ -172,11 +176,7 @@
 			<use id="wave1"class="wave"xlink:href="#wave"x="0"y="1"/>
 		</g>
 	</svg>
-            <div id="socialMediaContainer">
-                <a href="">
-                    <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png" />
-                </a>
-            </div>
+
         </footer>
 
     </script>

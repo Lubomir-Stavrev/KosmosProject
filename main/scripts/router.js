@@ -11,6 +11,7 @@ const routs = {
     'edit': '../templates/auth/editProduct.hbs',
     'cart': '../templates/shop/shoppingCart.hbs',
     'edit': '../templates/editPage/edit.hbs',
+    'contacts': '../templates/contactPages/contacts.hbs',
 }
 
 async function router(path, condition) {
@@ -38,12 +39,6 @@ async function router(path, condition) {
             const deliveryPrice = 10 //TODO we dont know yet ?!
             tempData.subtotal = JSON.parse(localStorage.getItem('subtotal'));
             tempData.sumWithDelivery = Number(JSON.parse(localStorage.getItem('subtotal'))) + deliveryPrice;
-
-            break;
-        case 'edit':
-
-
-
             break;
     }
 
@@ -59,6 +54,9 @@ async function router(path, condition) {
         Object.assign(tempData, data);
         path = 'details';
     } else if (path.includes('edit/')) {
+        let categoryData = await auth.getCategoryNames();
+
+        tempData.categories = categoryData;
         let id = path.split('/')[1];
         let data = await auth.getDetails(id);
 
@@ -84,8 +82,6 @@ async function router(path, condition) {
 
         path = 'kosmosShop';
     }
-    console.log(path)
-
     getTemplate(path)
         .then(res => {
 
@@ -110,4 +106,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/kosmosShop');
+navigate('/contacts');

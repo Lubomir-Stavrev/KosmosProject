@@ -11,7 +11,7 @@ const auth = {
 
         return userModel.signInWithEmailAndPassword(email, password)
             .then(function(data) {
-
+                localStorage.removeItem('buys');
                 localStorage.setItem('auth', JSON.stringify({ uid: data.user.uid, email }));
             }).catch(err => {
                 return 'Error';
@@ -50,18 +50,19 @@ const auth = {
         }).then(res => res.json());
     },
 
-    edit(title, type, description, image, price, quantity, category, id) {
+    edit(title, category, description, image, price, quantity, brand, id) {
 
-        return fetch(productsURL + `/products/${id}/.json`, {
+        return fetch(productsURL + `/${id}/.json`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title,
-                type,
+                category,
                 description,
                 image,
                 price,
                 quantity,
-                category
+                brand,
+                uid: JSON.parse(localStorage.getItem("auth")).uid
             })
         }).then(res => res.json());
     },
@@ -185,10 +186,8 @@ const auth = {
                     if (userData) {
                         Object.entries(userData)
                             .forEach(el => {
-                                console.log(el[1].email)
-                                console.log(data.email)
+
                                 if (el[1].email == data.email) {
-                                    console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee +>>>>>>>>.')
 
                                     data.isAdmin = true;
 
@@ -204,6 +203,7 @@ const auth = {
 
     logout() {
         localStorage.removeItem('auth');
+        localStorage.removeItem('buys');
         return;
     },
 

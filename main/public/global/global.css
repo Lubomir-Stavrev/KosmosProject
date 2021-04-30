@@ -79,3 +79,9 @@ a {
         -o-transform: rotate(0deg);
     }
 }
+
+#socialMediaContainer {
+    position: absolute;
+    float: left;
+    margin-left: 5%;
+}

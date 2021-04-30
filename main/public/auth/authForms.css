@@ -49,6 +49,10 @@
     margin-bottom: 2%;
     margin-top: 1%;
     transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
 }
 
 .authForm input:focus {
@@ -72,10 +76,6 @@
     border: #00308F solid 2px;
     color: #00308F;
     border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
     cursor: pointer;
     transition: 0.4s;
     -webkit-transition: 0.4s;
@@ -90,7 +90,8 @@
     font-size: 1.5rem;
 }
 
-#selectCategory {
+#selectCategory,
+#selectCategoryEdit {
     display: inline-block;
     text-align: center;
     justify-content: center;
@@ -106,16 +107,19 @@
     margin-bottom: 20px;
 }
 
-#addCategoryButtonContainer {
+#addCategoryButtonContainer,
+#addCategoryButtonContainerEdit {
     display: inline-block;
     font-size: 1rem;
 }
 
-#addCategoryButtonContainer:hover #addCategoryButton {
+#addCategoryButtonContainer:hover #addCategoryButton,
+#addCategoryButtonContainerEdit:hover #addCategoryButtonEdit {
     display: inline-block !important;
 }
 
-#addCategoryContainer {
+#addCategoryContainer,
+#addCategoryContainerEdit {
     width: 20%;
     border: #0441d5 1px solid;
     border-radius: 5px;
@@ -132,11 +136,13 @@
     margin-top: 20px;
 }
 
-#addCategoryContainer label {
+#addCategoryContainer label,
+#addCategoryContainerEdit label {
     display: block;
 }
 
-#addCategoryContainer button {
+#addCategoryContainer button,
+#addCategoryContainerEdit button {
     border: #0441d5 solid 1px;
     border-radius: 5px;
     padding: 4px 8px;

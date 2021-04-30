@@ -160,25 +160,25 @@ function createForm(e) {
 function editForm(e) {
     e.preventDefault();
 
-    let title = document.getElementById('edit-Title').value;
-    let description = document.getElementById('edit-Description').value;
-    let image = document.getElementById('edit-Image').value;
-    let price = document.getElementById('edit-Price').value;
-    let quantity = document.getElementById('edit-Quantity').value;
-    let type = document.getElementById('edit-Type').value;
-    let category = document.getElementById('categorySection-Edit').value;
+    let title = document.getElementById('nameEdit').value;
+    let description = document.getElementById('descriptionEdit').value;
+    let image = document.getElementById('imgUrlEdit').value;
+    let price = document.getElementById('priceEdit').value;
+    let quantity = document.getElementById('quantityEdit').value;
+    let category = document.getElementById('selectCategoryEdit').value;
+    let brand = document.getElementById('brandEdit').value;
 
 
-    if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
-        displayErrorMessage('You should fill all the fields !', 'editForm');
-        return;
-    }
-    if (title.length > 20) {
-        displayErrorMessage('The title SHOULD be no more than 20 letters!', 'editForm');
-        return
-    }
+    /*  if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
+         displayErrorMessage('You should fill all the fields !', 'editForm');
+         return;
+     }
+     if (title.length > 20) {
+         displayErrorMessage('The title SHOULD be no more than 20 letters!', 'editForm');
+         return
+     } */
     let id = getCurrUrlId();
-    auth.edit(title, type, description, image, price, quantity, category, id)
+    auth.edit(title, category, description, image, price, quantity, brand, id)
         .then(res => {
 
             navigate(`/details/${id}`);
