@@ -1,4 +1,4 @@
-const deliveryPrice = 10 //TODO we dont know yet ?!
+const deliveryPrice = 5; //TODO we dont know yet ?!
 
 function registerPartial() {
 
@@ -110,6 +110,8 @@ function loginForm(e) {
             }
             navigate('/home');
         })
+
+
 }
 
 function displayErrorMessage(message, formId) {
@@ -294,6 +296,7 @@ function addToCart(e) {
         localStorage.setItem('buys', JSON.stringify(prod));
     }
     localStorage.setItem('subtotal', getTheSubtotal())
+    auth.addAnonymousUserProductsSum(Number(getTheSubtotal()) + deliveryPrice);
     setTimeout(function() {
         navigate('/kosmosShop')
     }, 2000)
@@ -327,11 +330,13 @@ function removeProductFromCart(e) {
         if (el[1].productId == productIdToRemove) {
 
             localeStorageBuys.splice(index, 1);
-
             localStorage.setItem('buys', JSON.stringify(localeStorageBuys));
             navigate('/cart')
         }
     })
+
+
+    auth.addAnonymousUserProductsSum(Number(getTheSubtotal()) + deliveryPrice);
 }
 
 
@@ -444,6 +449,7 @@ function getTheSubtotal() {
 
 
 
+
     return subtotal;
 
 }
@@ -496,6 +502,9 @@ function addToPrice(e, productPriceForOneQuantity) {
     })
     subtotalElement.innerText = newSubtotal + 'лв';
     sumElement.innerText = newSubtotal + deliveryPrice + 'лв';
+
+    auth.addAnonymousUserProductsSum(Number(newSubtotal) + deliveryPrice);
+
 }
 
 function searchProducts(e) {
@@ -528,4 +537,86 @@ function productsByCategory(e) {
     navigate(`/category/${categoryValue}`)
 
 }
+
+async function buyTheCart(e) {
+    e.preventDefault();
+
+    let addressForm = document.getElementById('cartInfoAddressContainer').children[0];
+
+    const addressData = new FormData(addressForm);
+
+    const personName = addressData.get('personName');
+    const province = addressData.get('province');
+    const address = addressData.get('address');
+    const phoneNumber = addressData.get('phoneNumber');
+
+    if (!personName || !province || !address || !phoneNumber) {
+        console.log('you should field all!');
+        /*  return; */
+    }
+
+    let cartProductsTable = document.getElementById('cartProductsContainer').children[0].children[0].children;
+
+    let products = [];
+
+    Object.values(cartProductsTable).forEach(el => {
+        let productName = el.getElementsByClassName('textInfo')[0].children[0].innerText;
+        let productQuantity = el.getElementsByClassName('quantityInput')[0].value;
+        let productPrice = el.getElementsByClassName('productPrice')[0].innerText;
+
+        products.push(`Име на продукт: ${productName} Количество: ${productQuantity} Цена: ${productPrice}`);
+    });
+
+    let subtotal = document.getElementsByClassName('cartInfoRight')[0].innerText.split('лв')[0];
+    let sumWithDelivery = document.getElementsByClassName('cartInfoRight')[2].innerText.split('лв')[0];
+
+    let productsAsString = products.join('\n');
+    console.log(productsAsString);
+    console.log(products);
+    let allInfo = {
+        names: personName,
+        province,
+        address,
+        phoneNumber,
+        productsAsString,
+        subtotal,
+        sumWithDelivery
+    }
+    let realPrice = await auth.getAnonymousUserProductsSum()
+
+    if (realPrice.sum == sumWithDelivery && realPrice.sum == Number(subtotal) + 5) {
+
+
+        emailjs.send('service_kvtqhbs', 'template_b3v0wxs', allInfo)
+            .then(function(response) {
+                let container = document.getElementById('cartContainer');
+
+                container.innerHTML = '<h1 style="color:#0441d5">ГОТОВО</h1>'
+
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+
+    } else {
+        navigate('/cart')
+    }
+    console.log(allInfo);
+
+
+
+
+}
+
+window.onbeforeunload = function() {
+    let uid = JSON.parse(localStorage.getItem('userToken'));
+
+    localStorage.removeItem('userToken')
+};
+
+
+function registerSessionId() {
+    auth.registerAnonymousUser()
+}
+
+registerSessionId();
 registerPartial();

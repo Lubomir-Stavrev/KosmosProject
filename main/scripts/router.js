@@ -36,9 +36,28 @@ async function router(path, condition) {
             tempData.categories = categoryData;
             break;
         case 'cart':
-            const deliveryPrice = 10 //TODO we dont know yet ?!
-            tempData.subtotal = JSON.parse(localStorage.getItem('subtotal'));
-            tempData.sumWithDelivery = Number(JSON.parse(localStorage.getItem('subtotal'))) + deliveryPrice;
+            const deliveryPrice = 5;
+            let prodInCart = JSON.parse(localStorage.getItem('buys'));
+
+            let currSubtotal = 0;
+            if (prodInCart || prodInCart.length > 0) {
+                Object.values(prodInCart)
+                    .forEach(product => {
+                        if (product) {
+                            if (product.price) {
+                                currSubtotal = Number(currSubtotal) + Number(product.price);
+                            }
+                        }
+                    })
+
+            }
+            currSubtotal = currSubtotal.toFixed(2)
+            if (Number(currSubtotal) < 0) {
+                currSubtotal = 0;
+            }
+            tempData.subtotal = Number(currSubtotal);
+            tempData.sumWithDelivery = Number(currSubtotal) + deliveryPrice;
+            auth.addAnonymousUserProductsSum(Number(currSubtotal) + deliveryPrice)
             break;
     }
 
@@ -106,4 +125,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/contacts');
+navigate('/cart');

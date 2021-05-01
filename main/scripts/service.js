@@ -397,6 +397,50 @@ const auth = {
         }
 
         return await productsWithName;
-    }
+    },
+
+    async registerAnonymousUser() {
+        let uid = '';
+        firebase.auth().signInAnonymously()
+            .then(() => {
+                firebase.auth().onAuthStateChanged((user) => {
+                    if (user) {
+                        // User is signed in, see docs for a list of available properties
+                        // https://firebase.google.com/docs/reference/js/firebase.User
+                        localStorage.setItem('userToken', user.uid)
+                            // ...
+                    } else {
+                        localStorage.removeItem('userToken')
+                    }
+                });
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+            });
+
+        return await uid
+    },
+
+    addAnonymousUserProductsSum(sum) {
+        let id = localStorage.getItem('userToken');
+
+        return fetch(productsURL + `/${id}/.json`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    sum
+                })
+            })
+            .then(res => res.json())
+            .then(data => data)
+    },
+
+    getAnonymousUserProductsSum() {
+        let id = localStorage.getItem('userToken');
+        return fetch(productsURL + `/${id}/.json`)
+            .then(res => res.json())
+            .then(data => data)
+    },
 
 }
