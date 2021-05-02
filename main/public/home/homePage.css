@@ -40,3 +40,17 @@
     transition: 0.5s;
     display: contents;
 }
+
+@media (max-width: 1050px) {
+    #homeContainer div {
+        float: none;
+        text-align: center;
+        justify-content: center;
+    }
+    #homeContainer div button {
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+        justify-content: center;
+    }
+}

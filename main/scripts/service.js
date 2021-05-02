@@ -1,6 +1,6 @@
 const userModel = firebase.auth();
 
-const addKeyForAuth = 'AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg';
+const apiKey = 'AIzaSyAVdYTu_l1PS2PFmh4P3_TNhyoS_Exiyfg';
 const productsURL = `https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app`;
 const usersURL = 'https://myownspa-default-rtdb.europe-west1.firebasedatabase.app/users.json';
 
@@ -35,7 +35,7 @@ const auth = {
     },
     create(title, category, description, image, price, quantity, brand) {
 
-        return fetch(productsURL + '/.json', {
+        return fetch(productsURL + '/products/.json', {
             method: 'POST',
             body: JSON.stringify({
                 title,
@@ -52,7 +52,7 @@ const auth = {
 
     edit(title, category, description, image, price, quantity, brand, id) {
 
-        return fetch(productsURL + `/${id}/.json`, {
+        return fetch(productsURL + `/products//${id}/.json`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title,
@@ -74,7 +74,7 @@ const auth = {
 
 
 
-        await fetch(productsURL + '/.json')
+        await fetch(productsURL + '/products//.json')
             .then(res => res.json())
             .then(data => {
                 if (data) {
@@ -103,7 +103,7 @@ const auth = {
 
     async getDetails(id) {
 
-        let data = await fetch(`https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/${id}.json`)
+        let data = await fetch(`https://kosmosdb-44938-default-rtdb.europe-west1.firebasedatabase.app/products/${id}.json`)
             .then(res => res.json())
             .then(data => {
 
@@ -284,7 +284,7 @@ const auth = {
     },
 
     deleteProduct(id) {
-        return fetch(productsURL + `/${id}/.json`, {
+        return fetch(productsURL + `/products//${id}/.json`, {
             method: 'DELETE',
         }).then(res => res.json());
     },
@@ -431,6 +431,16 @@ const auth = {
                 body: JSON.stringify({
                     sum
                 })
+            })
+            .then(res => res.json())
+            .then(data => data)
+    },
+
+    removeAnonymousUserProductsSum() {
+        let id = localStorage.getItem('userToken');
+
+        return fetch(productsURL + `/${id}/.json`, {
+                method: 'DELETE',
             })
             .then(res => res.json())
             .then(data => data)

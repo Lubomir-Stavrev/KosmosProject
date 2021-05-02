@@ -77,19 +77,19 @@ function registerForm(e) {
     let rePassword = document.getElementById('register-RePassword');
 
     if (password.value != rePassword.value) {
-        displayErrorMessage('The passwords must be the same!', 'registerForm');
+        displayErrorMessage('The passwords must be the same!', 'formContainer');
         password.value = '';
         rePassword.value = '';
         return;
     }
     if (password.value.length < 6) {
-        displayErrorMessage('The password must be at least 6 symbols!', 'registerForm');
+        displayErrorMessage('The password must be at least 6 symbols!', 'formContainer');
         return;
     }
     auth.register(email.value, password.value)
         .then(res => {
             if (res == 'Error') {
-                displayErrorMessage('The email is already taken!', 'registerForm');
+                displayErrorMessage('The email is already taken!', 'formContainer');
                 return;
             }
             navigate('/login');
@@ -101,6 +101,9 @@ function loginForm(e) {
 
     let email = document.getElementById('login-Email');
     let password = document.getElementById('login-Password');
+
+    console.log(email);
+    console.log(password);
 
     auth.login(email.value, password.value)
         .then(res => {
@@ -119,7 +122,7 @@ function displayErrorMessage(message, formId) {
     let p = document.createElement('p');
     p.setAttribute('id', 'errorBox')
     p.textContent = message;
-    let form = document.getElementById(formId);
+    let form = document.getElementsByClassName(formId)[0];
 
     form.insertBefore(p, form.firstChild);
 
@@ -141,14 +144,16 @@ function createForm(e) {
 
 
 
-    /* if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
+    if (title == '' || description == '' || image == '' || price == '' || quantity == '' ||
+        category == '' ||
+        brand == '') {
         displayErrorMessage('You should fill all the fields !', 'createForm');
         return;
     }
     if (title.length > 20) {
         displayErrorMessage('The title SHOULD be no more than 20 letters!', 'createForm');
         return
-    } */
+    }
 
     auth.create(title, category, description, image, price, quantity, brand)
         .then(res => {
@@ -171,14 +176,14 @@ function editForm(e) {
     let brand = document.getElementById('brandEdit').value;
 
 
-    /*  if (title == '' || type == '' || quantity == '' || category == '' || description == '' || image == '' || price == '') {
-         displayErrorMessage('You should fill all the fields !', 'editForm');
-         return;
-     }
-     if (title.length > 20) {
-         displayErrorMessage('The title SHOULD be no more than 20 letters!', 'editForm');
-         return
-     } */
+    if (title == '' || description == '' || image == '' || category == '' || price == '') {
+        displayErrorMessage('You should fill all the fields !', 'editForm');
+        return;
+    }
+    if (title.length > 20) {
+        displayErrorMessage('The title SHOULD be no more than 20 letters!', 'editForm');
+        return
+    }
     let id = getCurrUrlId();
     auth.edit(title, category, description, image, price, quantity, brand, id)
         .then(res => {
@@ -551,8 +556,15 @@ async function buyTheCart(e) {
     const phoneNumber = addressData.get('phoneNumber');
 
     if (!personName || !province || !address || !phoneNumber) {
-        console.log('you should field all!');
-        /*  return; */
+        let buttonBuy = document.getElementsByClassName('buyCartButton')[0];
+        buttonBuy.style.color = '#F0706A'
+        buttonBuy.style.borderColor = '#F0706A'
+        setTimeout(function() {
+            buttonBuy.style.color = '#00308F'
+            buttonBuy.style.borderColor = '#00308F'
+        }, 1000)
+
+        return;
     }
 
     let cartProductsTable = document.getElementById('cartProductsContainer').children[0].children[0].children;
@@ -571,8 +583,7 @@ async function buyTheCart(e) {
     let sumWithDelivery = document.getElementsByClassName('cartInfoRight')[2].innerText.split('лв')[0];
 
     let productsAsString = products.join('\n');
-    console.log(productsAsString);
-    console.log(products);
+
     let allInfo = {
         names: personName,
         province,
@@ -589,9 +600,13 @@ async function buyTheCart(e) {
 
         emailjs.send('service_kvtqhbs', 'template_b3v0wxs', allInfo)
             .then(function(response) {
+                auth.removeAnonymousUserProductsSum();
+                localStorage.removeItem('buys');
                 let container = document.getElementById('cartContainer');
-
                 container.innerHTML = '<h1 style="color:#0441d5">ГОТОВО</h1>'
+                setTimeout(function() {
+                    navigate('/kosmosShop')
+                }, 3000)
 
             }, function(error) {
                 console.log('FAILED...', error);
@@ -616,6 +631,35 @@ window.onbeforeunload = function() {
 
 function registerSessionId() {
     auth.registerAnonymousUser()
+}
+
+function sendContact(e) {
+    e.preventDefault();
+
+    const data = new FormData(e.target);
+
+    const names = data.get('name');
+    const email = data.get('email');
+    const comment = document.getElementById('message').value;
+
+    if (!names || !email || !comment) {
+        return;
+    }
+
+    let allInfo = {
+        names,
+        email,
+        comment
+    }
+    emailjs.send('service_kvtqhbs', 'template_tpywy1d', allInfo)
+        .then(function(response) {
+            navigate('/kosmosShop');
+
+        }, function(error) {
+            console.log('FAILED...', error);
+            return;
+        });
+
 }
 
 registerSessionId();

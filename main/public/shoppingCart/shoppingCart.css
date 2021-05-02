@@ -252,6 +252,6 @@
     -moz-border-radius: 100px;
     -ms-border-radius: 100px;
     -o-border-radius: 100px;
-    min-width: 100px;
-    width: calc(30% - 20pt);
+    min-width: 200px;
+    width: calc(30% - 10pt);
 }

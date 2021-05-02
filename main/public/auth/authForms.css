@@ -110,7 +110,7 @@
 #addCategoryButtonContainer,
 #addCategoryButtonContainerEdit {
     display: inline-block;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 #addCategoryButtonContainer:hover #addCategoryButton,
@@ -120,7 +120,7 @@
 
 #addCategoryContainer,
 #addCategoryContainerEdit {
-    width: 20%;
+    width: 30%;
     border: #0441d5 1px solid;
     border-radius: 5px;
     -webkit-border-radius: 5px;

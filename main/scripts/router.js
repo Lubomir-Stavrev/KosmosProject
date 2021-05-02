@@ -1,6 +1,7 @@
 const appElement = document.getElementById('app');
 
 
+
 const routs = {
     'home': '../templates/homePage.hbs',
     'kosmosShop': '../templates/shop/shop.hbs',
@@ -12,6 +13,7 @@ const routs = {
     'cart': '../templates/shop/shoppingCart.hbs',
     'edit': '../templates/editPage/edit.hbs',
     'contacts': '../templates/contactPages/contacts.hbs',
+    'errorPage': '../templates/errorPage/404.hbs',
 }
 
 async function router(path, condition) {
@@ -40,7 +42,7 @@ async function router(path, condition) {
             let prodInCart = JSON.parse(localStorage.getItem('buys'));
 
             let currSubtotal = 0;
-            if (prodInCart || prodInCart.length > 0) {
+            if (prodInCart) {
                 Object.values(prodInCart)
                     .forEach(product => {
                         if (product) {
@@ -64,12 +66,7 @@ async function router(path, condition) {
     if (path.includes('details/')) {
         let id = path.split('/')[1];
         let data = await auth.getDetails(id);
-        /* let allComments = await auth.getAllComments(id);
-        let allLikes = await auth.getAllLikes(id); */
 
-        /* commentSectionControl(tempData, allComments, condition); */
-
-        /* Object.assign(tempData, allLikes); */
         Object.assign(tempData, data);
         path = 'details';
     } else if (path.includes('edit/')) {
@@ -91,8 +88,7 @@ async function router(path, condition) {
         tempData.products = await auth.getProductsWith(name)
 
         path = 'kosmosShop'
-    }
-    if (path.includes('category')) {
+    } else if (path.includes('category')) {
         let name = path.split('/')[1];
         let categoryDataHome = await auth.getCategoryNames();
 
@@ -101,6 +97,8 @@ async function router(path, condition) {
 
         path = 'kosmosShop';
     }
+
+
     getTemplate(path)
         .then(res => {
 
@@ -111,6 +109,9 @@ async function router(path, condition) {
 }
 
 function getTemplate(path) {
+    if (!routs[path]) {
+        path = 'errorPage';
+    }
     let tempPath = routs[path];
 
     return fetch(tempPath)
@@ -125,4 +126,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/cart');
+navigate('/contacts');
