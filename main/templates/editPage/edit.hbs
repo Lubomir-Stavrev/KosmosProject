@@ -26,21 +26,7 @@
                 <option value={{name}}>{{name}}</option>
                 {{/each}}
             </select>
-            <div id="addCategoryButtonContainerEdit">
-                <a onclick="showAddCategory(event)" style="cursor: pointer;">
-                    <span>
-                        +
-                    </span>
-                    <span style="display: none;" id="addCategoryButtonEdit">
-                        Добави категория
-                    </span>
-                </a>
-            </div>
-            <div id="addCategoryContainerEdit" style="display: none;">
-                <label for="newCategory">Име на категория</label>
-                <input type="text" id="newCategoryNameEdit">
-                <button onclick="addCategory(event)">Добави</button>
-            </div>
+
             <br>
             <label for="price"><b>Цена</b></label>
             <br>
