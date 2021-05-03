@@ -35,12 +35,12 @@
 
 @keyframes shakeCart {
     0% {
-        transform: scale(1.5);
+        transform: scale(5);
         transform: rotate(15deg);
-        -webkit-transform: scale(1.5);
-        -moz-transform: scale(1.5);
-        -ms-transform: scale(1.5);
-        -o-transform: scale(1.5);
+        -webkit-transform: scale(5);
+        -moz-transform: scale(5);
+        -ms-transform: scale(5);
+        -o-transform: scale(5);
     }
     25% {
         transform: rotate(-15deg);

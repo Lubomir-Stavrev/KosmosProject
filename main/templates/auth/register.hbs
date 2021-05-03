@@ -1,32 +1,36 @@
 
 {{> header}}
 <div class="formContainer">
-<h1 class="formTitle">Регистрация</h1>
-<div class="titleLine"></div>
+  <h1 class="formTitle">Регистрация</h1>
+  <div class="titleLine"></div>
 
-<form  class="authForm" onsubmit="registerForm(event)">
-  
-  <div>
-    <label for="email"><b>Имейл</b></label>
-    <br>  
-    <input type="email" id="register-Email" placeholder="example@mail.com" name="email" required>
-<br>  
-    <label for="password"><b>Парола</b></label>
-    <br>  
-    <input type="password" id="register-Password" placeholder="Въведете парола" name="password" required>
+  <form id='registerForm' class="authForm" onsubmit="registerForm(event)">
 
-<br>
-<label for="rePassword"><b>Повторете Паролата</b></label>
-    <br>  
-    <input type="password" id="register-RePassword" placeholder="Повторете паролата" name="rePassword" required>
-<br>
-<br>
-  </div>
-  <div >
-    <button class="authButton" type="submit" >Регистрирай ме</button>
-  </div>
-  <a class="underFormInfo"  onclick="navigateHandler(event)" href="/login">Вече имате регистрация?</a>
-</form>
+    <div>
+      <label for="email"><b>Имейл</b></label>
+      <br>
+      <input type="email" id="register-Email" placeholder="example@mail.com"
+        name="email" required>
+      <br>
+      <label for="password"><b>Парола</b></label>
+      <br>
+      <input type="password" id="register-Password" placeholder="Въведете
+        парола" name="password" required>
+
+      <br>
+      <label for="rePassword"><b>Повторете Паролата</b></label>
+      <br>
+      <input type="password" id="register-RePassword" placeholder="Повторете
+        паролата" name="rePassword" required>
+      <br>
+      <br>
+    </div>
+    <div>
+      <button class="authButton" type="submit">Регистрирай ме</button>
+    </div>
+    <a class="underFormInfo" onclick="navigateHandler(event)" href="/login">Вече
+      имате регистрация?</a>
+  </form>
 
 </div>
 

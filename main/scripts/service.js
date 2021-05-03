@@ -350,9 +350,10 @@ const auth = {
             .then(data => {
                 let names = []
                 if (data) {
-                    Object.values(data).forEach(el => {
-                        if (el.name) {
-                            names.push({ name: el.name });
+                    Object.entries(data).forEach(el => {
+                        console.log(el[0]);
+                        if (el[1].name) {
+                            names.push({ name: el[1].name, categoryId: el[0] });
 
                         }
                     })
@@ -452,5 +453,13 @@ const auth = {
             .then(res => res.json())
             .then(data => data)
     },
+
+    removeCategoryName(id) {
+
+        return fetch(productsURL + `/categoryNames/${id}/.json`, {
+                method: 'DELETE'
+            }).then(res => res.json())
+            .then(data => { return data })
+    }
 
 }

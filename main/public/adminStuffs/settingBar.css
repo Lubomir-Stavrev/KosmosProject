@@ -17,6 +17,8 @@
     color: #fff;
     display: block;
     margin-bottom: 6px;
+    width: 100%;
+    cursor: pointer;
 }
 
 #dropDownSettings a:hover {
@@ -28,9 +30,14 @@
     border: 1px #0441d5 solid;
     border-radius: 10px;
     background: rgb(15, 90, 237, 0.5);
-    padding: 20px 80px 10px 20px;
+    padding: 10px 80px 10px 20px;
     margin-right: 35%;
     margin-top: 20%;
     z-index: 1000;
     margin-bottom: -60%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    cursor: pointer;
 }

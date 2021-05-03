@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +37,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="./node_modules/handlebars/dist/handlebars.js"></script>
 
-
+    <meta name="Магазин Космос" CONTENT="магазин космос">
+    <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34=" />
+    <title>Магазин Космос</title>
+    <meta name="robots" content="noindex,nofollow">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js">
     </script>
@@ -88,16 +91,18 @@
 
                 </div>
             </div>
-            {{#if isLogged}}
+            {{#if isAdmin}}
             <div class="settingsBar" onclick="activateSettingsMenu(this)">
                 <div>
                     <span>⚙</span>
                 </div>
-                <div onclick="navigateHandler(event)" id="dropDownSettings" style="display: none;">
+                <a onclick="navigate('/create')">
+                    <div id="dropDownSettings" style="display: none;">
 
-                    <a href="/create">Създай</a>
+                        Създай
 
-                </div>
+                    </div>
+                </a>
             </div>
             {{else}}
             <div id=shoppingCartNav onCLick='navigateHandler(event)'>

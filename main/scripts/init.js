@@ -77,19 +77,19 @@ function registerForm(e) {
     let rePassword = document.getElementById('register-RePassword');
 
     if (password.value != rePassword.value) {
-        displayErrorMessage('The passwords must be the same!', 'formContainer');
+        displayErrorMessage('The passwords must be the same!', 'registerForm');
         password.value = '';
         rePassword.value = '';
         return;
     }
     if (password.value.length < 6) {
-        displayErrorMessage('The password must be at least 6 symbols!', 'formContainer');
+        displayErrorMessage('The password must be at least 6 symbols!', 'registerForm');
         return;
     }
     auth.register(email.value, password.value)
         .then(res => {
             if (res == 'Error') {
-                displayErrorMessage('The email is already taken!', 'formContainer');
+                displayErrorMessage('Имейлът вече е зает!', 'registerForm');
                 return;
             }
             navigate('/login');
@@ -102,13 +102,13 @@ function loginForm(e) {
     let email = document.getElementById('login-Email');
     let password = document.getElementById('login-Password');
 
-    console.log(email);
-    console.log(password);
+
 
     auth.login(email.value, password.value)
         .then(res => {
             if (res == 'Error') {
-                displayErrorMessage('The email or password is invalid !', 'loginForm');
+                console.log(res)
+                displayErrorMessage('Имейлът или паролата са невалидни !', 'loginForm');
                 return;
             }
             navigate('/home');
@@ -122,7 +122,7 @@ function displayErrorMessage(message, formId) {
     let p = document.createElement('p');
     p.setAttribute('id', 'errorBox')
     p.textContent = message;
-    let form = document.getElementsByClassName(formId)[0];
+    let form = document.getElementById(formId);
 
     form.insertBefore(p, form.firstChild);
 
@@ -147,18 +147,18 @@ function createForm(e) {
     if (title == '' || description == '' || image == '' || price == '' || quantity == '' ||
         category == '' ||
         brand == '') {
-        displayErrorMessage('You should fill all the fields !', 'createForm');
+        displayErrorMessage('Трябва да попълните всияки поленца !', 'createForm');
         return;
     }
     if (title.length > 20) {
-        displayErrorMessage('The title SHOULD be no more than 20 letters!', 'createForm');
+        displayErrorMessage('Името не трябва да е повече от 20 букви!', 'createForm');
         return
     }
 
     auth.create(title, category, description, image, price, quantity, brand)
         .then(res => {
-
-            navigate('/home');
+            let productId = res.name
+            navigate(`/details/${productId}`);
         })
 
 
@@ -177,11 +177,11 @@ function editForm(e) {
 
 
     if (title == '' || description == '' || image == '' || category == '' || price == '') {
-        displayErrorMessage('You should fill all the fields !', 'editForm');
+        displayErrorMessage('Трябва да попълните всички поленца !', 'editForm');
         return;
     }
     if (title.length > 20) {
-        displayErrorMessage('The title SHOULD be no more than 20 letters!', 'editForm');
+        displayErrorMessage('Името не трябва да е повече от 20 букви !', 'editForm');
         return
     }
     let id = getCurrUrlId();
@@ -412,18 +412,14 @@ function addCategory(e) {
     let containerToShow = document.getElementById("addCategoryContainer");
     containerToShow.style.display = containerToShow.style.display == "block" ? 'none' : 'block';
 
-    let categoryList = document.getElementById('selectCategory');
-    let newCategory = document.createElement('option');
-    newCategory.textContent = `${newCategoryName.value}`;
-    newCategory.setAttribute("value", newCategoryName.value);
 
-    categoryList.appendChild(newCategory);
 
 
     auth.addNewCategory(newCategoryName.value)
         .then(res => {
+            navigate('/create')
             if (res == 'Error') {
-                displayErrorMessage('The email is already taken!', 'registerForm');
+                displayErrorMessage('Имейлът вече е зает!', 'registerForm');
 
                 return;
             }
@@ -557,6 +553,16 @@ async function buyTheCart(e) {
 
     if (!personName || !province || !address || !phoneNumber) {
         let buttonBuy = document.getElementsByClassName('buyCartButton')[0];
+
+        let buyForm = document.getElementById('cartInfoAddressContainer');
+        buyForm.style.display = 'block'
+        let inputs = buyForm.querySelector('form').getElementsByTagName("input");
+        Object.values(inputs).forEach(el => {
+            if (!el.value || !el.innerText) {
+                el.style.borderColor = '#F0706A'
+            }
+        })
+        console.log(inputs)
         buttonBuy.style.color = '#F0706A'
         buttonBuy.style.borderColor = '#F0706A'
         setTimeout(function() {
@@ -660,6 +666,25 @@ function sendContact(e) {
             return;
         });
 
+}
+
+function showRemoveList(e) {
+    e.preventDefault();
+
+    let removeList = document.getElementById('removeList');
+
+    removeList.style.display = removeList.style.display == 'block' ? 'none' : 'block'
+    e.target.innerText = e.target.innerText == 'Цъкнете категорията която искате да премахнете' ? 'премахни категория' : 'Цъкнете категорията която искате да премахнете';
+}
+
+function removeCategoryName(e) {
+    e.preventDefault();
+    let categoryNameId = e.target.id;
+
+
+    auth.removeCategoryName(categoryNameId).then(res => {
+        navigate('/create');
+    })
 }
 
 registerSessionId();

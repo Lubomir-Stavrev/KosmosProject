@@ -4,7 +4,7 @@
   <h1 class="formTitle">Създай продукт</h1>
   <div class="titleLine"></div>
 
-  <form class="authForm" onsubmit="createForm(event)">
+  <form class="authForm" id="createForm" onsubmit="createForm(event)">
 
     <div>
       <label for="name"><b>Име на продукт</b></label>
@@ -19,9 +19,7 @@
       <br>
       <label for="type"><b>Вид на продукт</b></label>
       <br>
-      <span>
-        -
-      </span>
+
       <select name="" id="selectCategory">
         <option value="">--категория--</option>
         {{#each categories}}
@@ -42,6 +40,20 @@
         <label for="newCategory">Име на категория</label>
         <input type="text" id="newCategoryName">
         <button onclick="addCategory(event)">Добави</button>
+      </div>
+      <div id="removeCategoryContainer">
+
+        <span onclick="showRemoveList(event)">
+          премахни категория
+        </span>
+        <span id="removeList" style="display: none;">
+          {{#each categories}}
+
+          <option onclick="removeCategoryName(event)" id="{{categoryId}}"
+            value={{name}}>{{name}}</option>
+
+          {{/each}}
+        </span>
       </div>
       <br>
       <label for="price"><b>Цена</b></label>
