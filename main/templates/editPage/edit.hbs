@@ -4,7 +4,7 @@
     <h1 class="formTitle">Редактирай продукт</h1>
     <div class="titleLine"></div>
 
-    <form class="authForm" onsubmit="editForm(event)">
+    <form id="editForm" class="authForm" onsubmit="editForm(event)">
 
         <div>
             <label for="name"><b>Име на продукт</b></label>
@@ -30,7 +30,7 @@
             <br>
             <label for="price"><b>Цена</b></label>
             <br>
-            <input type="number" value="{{price}}" id="priceEdit" name="price">
+            <input type="double" value="{{price}}" id="priceEdit" name="price">
             <br>
             <label for="quantity"><b>Количество</b></label>
             <br>

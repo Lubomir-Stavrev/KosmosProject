@@ -61,9 +61,12 @@ function activateMenu(x) {
 
 function activateSettingsMenu(x) {
 
-    let dropDownContant = document.getElementById('dropDownSettings');
-    dropDownContant.style.display = dropDownContant.style.display == 'none' ?
-        'block' : 'none';
+    let dropDownContant = document.getElementsByClassName('dropDownSettings');
+    [...dropDownContant].forEach(el => {
+        el.style.display = el.style.display == 'none' ?
+            'block' : 'none';
+
+    })
 
 }
 
@@ -143,6 +146,10 @@ function createForm(e) {
     let brand = document.getElementById('brand').value;
 
 
+    if (price.includes(',')) {
+        price = price.replace(/,/g, '.')
+
+    }
 
     if (title == '' || description == '' || image == '' || price == '' || quantity == '' ||
         category == '' ||
@@ -150,8 +157,8 @@ function createForm(e) {
         displayErrorMessage('Трябва да попълните всияки поленца !', 'createForm');
         return;
     }
-    if (title.length > 20) {
-        displayErrorMessage('Името не трябва да е повече от 20 букви!', 'createForm');
+    if (title.length > 50) {
+        displayErrorMessage('Името не трябва да е повече от 50 букви!', 'createForm');
         return
     }
 
@@ -175,13 +182,17 @@ function editForm(e) {
     let category = document.getElementById('selectCategoryEdit').value;
     let brand = document.getElementById('brandEdit').value;
 
+    console.log(typeof(price))
+    if (price.includes(',')) {
+        price = price.replace(/,/g, '.')
+    }
 
     if (title == '' || description == '' || image == '' || category == '' || price == '') {
         displayErrorMessage('Трябва да попълните всички поленца !', 'editForm');
         return;
     }
-    if (title.length > 20) {
-        displayErrorMessage('Името не трябва да е повече от 20 букви !', 'editForm');
+    if (title.length > 50) {
+        displayErrorMessage('Името не трябва да е повече от 50 букви !', 'editForm');
         return
     }
     let id = getCurrUrlId();
@@ -437,7 +448,9 @@ function getTheSubtotal() {
             .forEach(product => {
                 if (product) {
                     if (product.price) {
+
                         subtotal = subtotal + Number(product.price);
+
                     }
                 }
             })
@@ -562,7 +575,7 @@ async function buyTheCart(e) {
                 el.style.borderColor = '#F0706A'
             }
         })
-        console.log(inputs)
+
         buttonBuy.style.color = '#F0706A'
         buttonBuy.style.borderColor = '#F0706A'
         setTimeout(function() {
@@ -683,7 +696,7 @@ function removeCategoryName(e) {
 
 
     auth.removeCategoryName(categoryNameId).then(res => {
-        navigate('/create');
+        navigate('/categories');
     })
 }
 

@@ -1,0 +1,43 @@
+{{> header}}
+<div class="formContainer">
+    <div id="categoryTable">
+        <div class="search">
+            <input type="text" class="searchTerm"
+                placeholder="Какво търсите ?">
+            <button onclick="searchCategories(event)" type="submit"
+                class="searchButton">
+                <img src="../../images/waterDrop.png">
+            </button>
+        </div>
+        <table>
+            <tbody>
+                {{#each categories}}
+                <tr>
+
+                    <td>
+                        <div class="textInfo">
+
+                            <h4>
+                                <a>{{name}}</a>
+                            </h4>
+                        </div>
+                    </td>
+
+                    <td class="rightTableContainer removeFromList">
+                        <a onclick="removeCategoryName(event)"
+                            id="{{categoryId}}">
+                            X
+                        </a>
+                    </td>
+
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+{{> footer}}

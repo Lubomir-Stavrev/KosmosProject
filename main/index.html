@@ -96,13 +96,17 @@
                 <div>
                     <span>⚙</span>
                 </div>
-                <a onclick="navigate('/create')">
-                    <div id="dropDownSettings" style="display: none;">
 
-                        Създай
-
-                    </div>
+                <div class="dropDownSettings" style="display: none;">
+                    <a onclick="navigate('/create')">
+Създай
+                        </a>
+                    <a onclick="navigate('/categories')">
+Категории
+                        </a>
+                </div>
                 </a>
+
             </div>
             {{else}}
             <div id=shoppingCartNav onCLick='navigateHandler(event)'>

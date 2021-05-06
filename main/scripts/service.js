@@ -351,7 +351,7 @@ const auth = {
                 let names = []
                 if (data) {
                     Object.entries(data).forEach(el => {
-                        console.log(el[0]);
+
                         if (el[1].name) {
                             names.push({ name: el[1].name, categoryId: el[0] });
 

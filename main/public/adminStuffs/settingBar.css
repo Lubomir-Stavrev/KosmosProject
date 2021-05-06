@@ -12,7 +12,7 @@
     float: right;
 }
 
-#dropDownSettings a {
+.dropDownSettings a {
     text-decoration: none;
     color: #fff;
     display: block;
@@ -21,11 +21,11 @@
     cursor: pointer;
 }
 
-#dropDownSettings a:hover {
+.dropDownSettings a:hover {
     text-decoration: underline;
 }
 
-#dropDownSettings {
+.dropDownSettings {
     font-size: 15pt;
     border: 1px #0441d5 solid;
     border-radius: 10px;

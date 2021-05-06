@@ -14,6 +14,7 @@ const routs = {
     'edit': '../templates/editPage/edit.hbs',
     'contacts': '../templates/contactPages/contacts.hbs',
     'errorPage': '../templates/errorPage/404.hbs',
+    'categories': '../templates/auth/categories.hbs',
 }
 
 async function router(path, condition) {
@@ -34,8 +35,14 @@ async function router(path, condition) {
         case 'create':
             let categoryData = await auth.getCategoryNames();
 
-            console.log(categoryData)
+
             tempData.categories = categoryData;
+            break;
+        case 'categories':
+            let categoriesData = await auth.getCategoryNames();
+
+
+            tempData.categories = categoriesData;
             break;
         case 'cart':
             const deliveryPrice = 5;
@@ -47,19 +54,19 @@ async function router(path, condition) {
                     .forEach(product => {
                         if (product) {
                             if (product.price) {
-                                currSubtotal = Number(currSubtotal) + Number(product.price);
+                                currSubtotal = parseFloat(currSubtotal) + parseFloat(product.price);
                             }
                         }
                     })
 
             }
             currSubtotal = currSubtotal.toFixed(2)
-            if (Number(currSubtotal) < 0) {
+            if (parseFloat(currSubtotal) < 0) {
                 currSubtotal = 0;
             }
-            tempData.subtotal = Number(currSubtotal);
-            tempData.sumWithDelivery = Number(currSubtotal) + deliveryPrice;
-            auth.addAnonymousUserProductsSum(Number(currSubtotal) + deliveryPrice)
+            tempData.subtotal = parseFloat(currSubtotal);
+            tempData.sumWithDelivery = parseFloat(currSubtotal) + deliveryPrice;
+            auth.addAnonymousUserProductsSum(parseFloat(currSubtotal) + deliveryPrice)
             break;
     }
 
@@ -126,4 +133,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/home');
+navigate('/categories');
