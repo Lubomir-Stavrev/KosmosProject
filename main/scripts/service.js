@@ -33,13 +33,14 @@ const auth = {
                 return 'Error';
             })
     },
-    create(title, category, description, image, price, quantity, brand) {
+    create(title, category, subcategory, description, image, price, quantity, brand) {
 
         return fetch(productsURL + '/products/.json', {
             method: 'POST',
             body: JSON.stringify({
                 title,
                 category,
+                subcategory,
                 description,
                 image,
                 price,
@@ -50,13 +51,14 @@ const auth = {
         }).then(res => res.json());
     },
 
-    edit(title, category, description, image, price, quantity, brand, id) {
+    edit(title, category, subcategory, description, image, price, quantity, brand, id) {
 
         return fetch(productsURL + `/products//${id}/.json`, {
             method: 'PATCH',
             body: JSON.stringify({
                 title,
                 category,
+                subcategory,
                 description,
                 image,
                 price,
@@ -89,6 +91,7 @@ const auth = {
                                 image: el[1].image,
                                 price: el[1].price,
                                 category: el[1].category,
+                                subcategory: el[1].subcategory,
                                 type: el[1].type,
                                 quantity: el[1].quantity,
                                 brand: el[1].brand
@@ -120,6 +123,7 @@ const auth = {
                     quantity: data.quantity,
                     type: data.type,
                     category: data.category,
+                    subcategory: data.subcategory,
                     image: data.image,
                     brand: data.brand,
                     uid: data.uid,
@@ -460,6 +464,56 @@ const auth = {
                 method: 'DELETE'
             }).then(res => res.json())
             .then(data => { return data })
+    },
+    async addSubcategoryToCategory(categoryName, subcategoryName) {
+
+        let isAdded = await this.doesCategoryExist(categoryName, subcategoryName);
+
+        if (!isAdded) {
+
+            return fetch(productsURL + `/categoriesAndSubCategories/${categoryName}/.json`, {
+                method: "POST",
+                body: JSON.stringify({
+                    subcategoryName
+                })
+
+            })
+        }
+    },
+    doesCategoryExist(categoryName, subcategoryName) {
+        let isAdded = false;
+        return fetch(productsURL + `/categoriesAndSubCategories/${categoryName}/.json`)
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    Object.entries(data).forEach(el => {
+                        if (el[1].name.toLowerCase() == subcategoryName.toLowerCase()) {
+                            isAdded = true
+                        }
+                    })
+                }
+            }).then(after => {
+                return isAdded;
+            })
+    },
+    async getCategoriesAndSubcategories() {
+        let obj = [];
+        await fetch(productsURL + `/categoriesAndSubCategories/.json`)
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    Object.entries(data).forEach(el => {
+                        obj.push({
+                            categoryName: el[0],
+                            subcategories: el[1]
+                        })
+                    })
+                }
+            })
+
+        return await obj;
     }
+
+
 
 }

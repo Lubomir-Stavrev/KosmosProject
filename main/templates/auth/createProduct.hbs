@@ -1,5 +1,7 @@
 
 {{> header}}
+
+
 <div class="formContainer">
   <h1 class="formTitle">Създай продукт</h1>
   <div class="titleLine"></div>
@@ -17,44 +19,36 @@
       <input type="text" id="brand"
         name="brand" required>
       <br>
-      <label for="type"><b>Вид на продукт</b></label>
+      <label for="type"><b>Категория</b></label>
       <br>
-
-      <select name="" id="selectCategory">
-        <option value="">--категория--</option>
+      <div>
+        <input placeholder="търси категория">
+        <button class="authButton" style="font-size: 10pt;"
+          onclick="showCategorieNames(event,'category')">Търси</button>
+      </div>
+      <br>
+      <select id="selectCategory">
+        <option value="non">--категория--</option>
         {{#each categories}}
         <option value={{name}}>{{name}}</option>
         {{/each}}
       </select>
-      <div id="addCategoryButtonContainer">
-        <a onclick="showAddCategory(event)" style="cursor: pointer;">
-          <span>
-            +
-          </span>
-          <span style="display: none;" id="addCategoryButton">
-            Добави категория
-          </span>
-        </a>
+      <br>
+      <label for="type"><b>Подкатегория</b></label>
+      <br>
+      <div>
+        <input placeholder="търси подкатегория">
+        <button class="authButton" style="font-size: 10pt;"
+          onclick="showCategorieNames(event,'subcategory')">Търси</button>
       </div>
-      <div id="addCategoryContainer" style="display: none;">
-        <label for="newCategory">Име на категория</label>
-        <input type="text" id="newCategoryName">
-        <button onclick="addCategory(event)">Добави</button>
-      </div>
-      <div id="removeCategoryContainer">
+      <br>
+      <select id="selectSubcategory">
+        <option value="">--подкатегория--</option>
+        {{#each categories}}
+        <option value={{name}}>{{name}}</option>
+        {{/each}}
+      </select>
 
-        <span onclick="showRemoveList(event)">
-          премахни категория
-        </span>
-        <span id="removeList" style="display: none;">
-          {{#each categories}}
-
-          <option onclick="removeCategoryName(event)" id="{{categoryId}}"
-            value={{name}}>{{name}}</option>
-
-          {{/each}}
-        </span>
-      </div>
       <br>
       <label for="price"><b>Цена</b></label>
       <br>

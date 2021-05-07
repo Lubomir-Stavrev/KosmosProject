@@ -17,10 +17,30 @@
             <input type="text" id="brandEdit"
                 name="brand" value={{brand}} required>
             <br>
-            <label for="type"><b>Вид на продукт</b></label>
+            <label for="type"><b>Категория</b></label>
             <br>
-            <select value="{{category}}" name="{{category}}"
-                id="selectCategoryEdit">
+            <div>
+                <input placeholder="търси категория">
+                <button class="authButton" style="font-size: 10pt;"
+                    onclick="showCategorieNames(event,'category','true')">Търси</button>
+            </div>
+            <br>
+            <select id="selectCategoryEdit">
+                <option value="{{category}}" selected>{{category}}</option>
+                {{#each categories}}
+                <option value={{name}}>{{name}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <label for="type"><b>Подкатегория</b></label>
+            <br>
+            <div>
+                <input placeholder="търси подкатегория">
+                <button class="authButton" style="font-size: 10pt;"
+                    onclick="showCategorieNames(event,'subcategory','true')">Търси</button>
+            </div>
+            <br>
+            <select id="selectSubcategoryEdit">
                 <option value="{{category}}" selected>{{category}}</option>
                 {{#each categories}}
                 <option value={{name}}>{{name}}</option>

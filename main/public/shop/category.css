@@ -1,21 +1,26 @@
 .category .categoryLine {
     width: 27px;
     height: 4px;
-    background-color: #0fbeed;
+    background-color: #00308F;
     margin: 5px 0;
-    color: #0fbeed;
+    color: #00308F;
 }
 
 .category {
     float: left;
     margin-left: 5%;
-    border: 1px solid #0fbeed;
+    border: 1px solid #00308F;
     border-radius: 100%;
     padding: 5px 10px;
     background: rgb(15, 90, 237, 0.1);
     transition: 0.4s;
     cursor: pointer;
-    position: absolute
+    position: absolute;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    z-index: 1000;
 }
 
 .change .category {
@@ -27,8 +32,8 @@
     margin-top: 50px;
     margin-left: calc(30px - 1pt);
     float: right;
-    border: 1px solid #0fbeed;
-    color: #0fbeed;
+    border: 1px solid #00308F;
+    color: #00308F;
     background: rgb(15, 90, 237, 0.2);
     border-radius: 10px;
     padding: 5px 20px 5px 7px;
@@ -44,26 +49,6 @@
 
 #categoryDropDown a:hover {
     text-decoration: underline;
-}
-
-#removeList {
-    border: 1px solid #0fbeed;
-    width: 30%;
-    margin: 0 auto;
-}
-
-#removeCategoryContainer span {
-    cursor: pointer;
-}
-
-#removeList option {
-    padding-top: 15px;
-}
-
-#removeList option:hover {
-    background-color: #0fbeed;
-    color: #00308F;
-    cursor: pointer;
 }
 
 #categoryTable {
@@ -85,6 +70,10 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
     padding: 20px;
+}
+
+#categoryTable table tr :hover #categoryTable table tr {
+    background-color: #0fbeed;
 }
 
 #categoryTable table::-webkit-scrollbar {
@@ -126,4 +115,65 @@
     margin: 0px;
     margin-left: 9%;
     margin-bottom: 40px;
+}
+
+#addCategoryContainer {
+    display: inline-block;
+    text-align: center;
+    margin-left: 5%;
+    color: #0fbeed;
+}
+
+#addCategoryContainer input {
+    height: calc(35pt - 20px);
+    color: #0441d5;
+    border: 0;
+    outline: 0;
+    width: calc(60% + 30px);
+    border-bottom: 1px solid #0fbeed;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+#addCategoryContainer button {
+    border: #0441d5 solid 1px;
+    border-radius: 5px;
+    padding: 4px 8px;
+    color: #00308F;
+    background: rgb(189, 255, 243, 0.0);
+    cursor: pointer;
+}
+
+@media (max-width: 1097px) {
+    #categoryTable table {
+        text-align: center;
+    }
+    #categoryTable {
+        width: 90%;
+        text-align: center;
+    }
+    #categoryTable .search {
+        justify-content: center;
+        text-align: center;
+        margin-right: 0px;
+        margin-left: calc(35% + 3px);
+    }
+    #addCategoryContainer {
+        margin-left: 20%;
+        margin-right: 10%;
+    }
+    #addCategoryContainer h1 {
+        font-size: 20pt;
+    }
+    #addCategoryContainer button {
+        font-size: 20pt;
+    }
+    #addCategoryContainer input {
+        font-size: 20pt;
+    }
 }

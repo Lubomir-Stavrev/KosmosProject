@@ -143,6 +143,7 @@ function createForm(e) {
     let price = document.getElementById('price').value;
     let quantity = document.getElementById('quantity').value;
     let category = document.getElementById('selectCategory').value;
+    let subcategory = document.getElementById('selectSubcategory').value;
     let brand = document.getElementById('brand').value;
 
 
@@ -161,8 +162,8 @@ function createForm(e) {
         displayErrorMessage('Името не трябва да е повече от 50 букви!', 'createForm');
         return
     }
-
-    auth.create(title, category, description, image, price, quantity, brand)
+    auth.addSubcategoryToCategory(category, subcategory)
+    auth.create(title, category, subcategory, description, image, price, quantity, brand)
         .then(res => {
             let productId = res.name
             navigate(`/details/${productId}`);
@@ -180,9 +181,11 @@ function editForm(e) {
     let price = document.getElementById('priceEdit').value;
     let quantity = document.getElementById('quantityEdit').value;
     let category = document.getElementById('selectCategoryEdit').value;
+    let subcategory = document.getElementById('selectCategoryEdit').value;
+
     let brand = document.getElementById('brandEdit').value;
 
-    console.log(typeof(price))
+
     if (price.includes(',')) {
         price = price.replace(/,/g, '.')
     }
@@ -196,7 +199,8 @@ function editForm(e) {
         return
     }
     let id = getCurrUrlId();
-    auth.edit(title, category, description, image, price, quantity, brand, id)
+    auth.addSubcategoryToCategory(category, subcategory)
+    auth.edit(title, category, subcategory, description, image, price, quantity, brand, id)
         .then(res => {
 
             navigate(`/details/${id}`);
@@ -406,32 +410,21 @@ function showCartAdressInfo(e) {
 
 }
 
-function showAddCategory(e) {
-    e.preventDefault();
-
-    let containerToShow = document.getElementById("addCategoryContainer");
-    containerToShow.style.display = containerToShow.style.display == "block" ? 'none' : 'block';
-
-}
-
 function addCategory(e) {
     e.preventDefault();
-    let newCategoryName = document.getElementById('newCategoryName');
+    let newCategoryName = document.querySelector('#addCategoryContainer input');
     if (!newCategoryName.value) {
         return;
     }
-    let containerToShow = document.getElementById("addCategoryContainer");
-    containerToShow.style.display = containerToShow.style.display == "block" ? 'none' : 'block';
+
 
 
 
 
     auth.addNewCategory(newCategoryName.value)
         .then(res => {
-            navigate('/create')
+            navigate('/categories')
             if (res == 'Error') {
-                displayErrorMessage('Имейлът вече е зает!', 'registerForm');
-
                 return;
             }
 
@@ -634,7 +627,7 @@ async function buyTheCart(e) {
     } else {
         navigate('/cart')
     }
-    console.log(allInfo);
+
 
 
 
@@ -699,6 +692,77 @@ function removeCategoryName(e) {
         navigate('/categories');
     })
 }
+
+function searchCategories(e) {
+    e.preventDefault();
+    let inputElement = '';
+    if (e.target.tagName == "IMG") {
+        inputElement = e.target.parentNode.parentNode.children[0];
+    } else if (e.target.tagName == "BUTTON") {
+        inputElement = e.target.parentNode.children[0];
+    }
+    let searchValue = inputElement.value;
+
+
+
+    let table = document.querySelector('#categoryTable table tbody').children;
+
+    [...table].forEach(ch => {
+        let currChName = ch.children[0].innerText;
+        ch.style.display = 'none';
+        if (currChName.toLowerCase().includes(searchValue.toLowerCase())) {
+            ch.style.display = 'block';
+
+        }
+
+    })
+
+
+
+}
+
+function showCategorieNames(e, option, isEdit) {
+    e.preventDefault();
+    let category = '';
+    let searchValue = e.target.parentNode.children[0].value;
+
+    if (isEdit) {
+        if (option == 'category') {
+            category = document.querySelectorAll('#selectCategoryEdit option');
+
+        } else if (option == 'subcategory') {
+            category = document.querySelectorAll('#selectSubcategoryEdit option');
+        }
+    } else {
+        if (option == 'category') {
+            category = document.querySelectorAll('#selectCategory option');
+
+        } else if (option == 'subcategory') {
+            category = document.querySelectorAll('#selectSubcategory option');
+        }
+
+    }
+    [...category].forEach(ch => {
+        let currChName = ch.value;
+
+        ch.style.display = 'none';
+        if (currChName.toLowerCase().includes(searchValue.toLowerCase())) {
+            ch.style.display = 'block';
+
+        }
+
+    })
+}
+
+function showSubCategoryContiner(e) {
+    e.preventDefault();
+    let subcategory = e.target.parentNode.children[1];
+
+    subcategory.style.display = subcategory.style.display == 'block' ? 'none' : 'block';
+}
+
+
+
 
 registerSessionId();
 registerPartial();

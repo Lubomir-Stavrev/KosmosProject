@@ -91,6 +91,8 @@
 }
 
 #selectCategory,
+#selectSubcategory,
+#selectSubcategoryEdit,
 #selectCategoryEdit {
     display: inline-block;
     text-align: center;
@@ -118,7 +120,6 @@
     display: inline-block !important;
 }
 
-#addCategoryContainer,
 #addCategoryContainerEdit {
     width: 30%;
     border: #0441d5 1px solid;
@@ -136,12 +137,10 @@
     margin-top: 20px;
 }
 
-#addCategoryContainer label,
 #addCategoryContainerEdit label {
     display: block;
 }
 
-#addCategoryContainer button,
 #addCategoryContainerEdit button {
     border: #0441d5 solid 1px;
     border-radius: 5px;

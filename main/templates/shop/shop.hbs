@@ -15,8 +15,18 @@
         <div id="categoryDropDown" style="display:none;">
             <a onclick="navigateHandler(event)" href="/kosmosShop">Всички</a>
             {{#each categories}}
-
-            <a onclick="productsByCategory(event)" href="/{{name}}">{{name}}</a>
+            <div
+                class="categoryContainer">
+                <a style="cursor: pointer;"
+                    onclick="showSubCategoryContiner(event)">{{categoryName}}⮞</a>
+                <div
+                    class="subCategory" style="display: none;">
+                    {{#each this.subcategories}}
+                    <a onclick="productsByCategory(event)" style="cursor:
+                        pointer;">{{this.subcategoryName}}</a>
+                    {{/each}}
+                </div>
+            </div>
             {{/each}}
             <br />
         </div>
