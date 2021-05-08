@@ -378,7 +378,9 @@ const auth = {
                 Object.entries(allProducts.all).forEach(product => {
                     if (product[1]) {
                         if (by == 'category') {
+
                             if (product[1].category) {
+
                                 if (product[1].category.toLowerCase().includes(name.toLowerCase())) {
 
                                     productsWithName.push(product[1]);
@@ -468,7 +470,7 @@ const auth = {
     async addSubcategoryToCategory(categoryName, subcategoryName) {
 
         let isAdded = await this.doesCategoryExist(categoryName, subcategoryName);
-
+        console.log(isAdded);
         if (!isAdded) {
 
             return fetch(productsURL + `/categoriesAndSubCategories/${categoryName}/.json`, {
@@ -480,21 +482,23 @@ const auth = {
             })
         }
     },
-    doesCategoryExist(categoryName, subcategoryName) {
+    async doesCategoryExist(categoryName, subcategoryName) {
         let isAdded = false;
-        return fetch(productsURL + `/categoriesAndSubCategories/${categoryName}/.json`)
+        await fetch(productsURL + `/categoriesAndSubCategories/${categoryName}/.json`)
             .then(res => res.json())
             .then(data => {
                 if (data) {
                     Object.entries(data).forEach(el => {
-                        if (el[1].name.toLowerCase() == subcategoryName.toLowerCase()) {
-                            isAdded = true
+                        if (el[1].subcategoryName) {
+                            if (el[1].subcategoryName.toLowerCase() == subcategoryName.toLowerCase()) {
+                                isAdded = true
+                            }
                         }
                     })
                 }
-            }).then(after => {
-                return isAdded;
             })
+        return await isAdded;
+
     },
     async getCategoriesAndSubcategories() {
         let obj = [];

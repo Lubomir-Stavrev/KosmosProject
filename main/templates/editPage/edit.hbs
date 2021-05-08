@@ -15,7 +15,7 @@
             <label for="brand"><b>Марка</b></label>
             <br>
             <input type="text" id="brandEdit"
-                name="brand" value={{brand}} required>
+                name="brand" value="{{brand}}" required>
             <br>
             <label for="type"><b>Категория</b></label>
             <br>
@@ -26,9 +26,15 @@
             </div>
             <br>
             <select id="selectCategoryEdit">
-                <option value="{{category}}" selected>{{category}}</option>
+                <option value="{{category}}">{{category}}</option>
                 {{#each categories}}
-                <option value={{name}}>{{name}}</option>
+                <option
+                    value="{{name}}">{{name}}</option>
+                {{/each}}
+
+                <option value="">--подкатегория--</option>
+                {{#each categories}}
+                <option value="{{name}}">{{name}}</option>
                 {{/each}}
             </select>
             <br>
@@ -41,9 +47,9 @@
             </div>
             <br>
             <select id="selectSubcategoryEdit">
-                <option value="{{category}}" selected>{{category}}</option>
+                <option value="{{subcategory}}">{{subcategory}}</option>
                 {{#each categories}}
-                <option value={{name}}>{{name}}</option>
+                <option value="{{name}}">{{name}}</option>
                 {{/each}}
             </select>
 

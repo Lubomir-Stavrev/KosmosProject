@@ -30,7 +30,7 @@
       <select id="selectCategory">
         <option value="non">--категория--</option>
         {{#each categories}}
-        <option value={{name}}>{{name}}</option>
+        <option value="{{name}}">{{name}}</option>
         {{/each}}
       </select>
       <br>
@@ -45,7 +45,7 @@
       <select id="selectSubcategory">
         <option value="">--подкатегория--</option>
         {{#each categories}}
-        <option value={{name}}>{{name}}</option>
+        <option value="{{name}}">{{name}}</option>
         {{/each}}
       </select>
 

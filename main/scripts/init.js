@@ -179,10 +179,12 @@ function editForm(e) {
     let description = document.getElementById('descriptionEdit').value;
     let image = document.getElementById('imgUrlEdit').value;
     let price = document.getElementById('priceEdit').value;
-    let quantity = document.getElementById('quantityEdit').value;
-    let category = document.getElementById('selectCategoryEdit').value;
-    let subcategory = document.getElementById('selectCategoryEdit').value;
-
+    let quantity = document.getElementById('quantityEdit');
+    let category = document.getElementById('selectCategoryEdit');
+    let subcategory = document.getElementById('selectSubcategoryEdit');
+    console.log(subcategory.options[subcategory.selectedIndex].text)
+    console.log(category.options[category.selectedIndex].text)
+    console.log(document.getElementById('selectCategoryEdit'))
     let brand = document.getElementById('brandEdit').value;
 
 
@@ -190,7 +192,7 @@ function editForm(e) {
         price = price.replace(/,/g, '.')
     }
 
-    if (title == '' || description == '' || image == '' || category == '' || price == '') {
+    if (title == '' || description == '' || image == '' || category.value == '' || price == '') {
         displayErrorMessage('Трябва да попълните всички поленца !', 'editForm');
         return;
     }
@@ -199,8 +201,8 @@ function editForm(e) {
         return
     }
     let id = getCurrUrlId();
-    auth.addSubcategoryToCategory(category, subcategory)
-    auth.edit(title, category, subcategory, description, image, price, quantity, brand, id)
+    auth.addSubcategoryToCategory(category.value, subcategory.value)
+    auth.edit(title, category.value, subcategory.value, description, image, price, quantity, brand, id)
         .then(res => {
 
             navigate(`/details/${id}`);
@@ -709,6 +711,7 @@ function searchCategories(e) {
 
     [...table].forEach(ch => {
         let currChName = ch.children[0].innerText;
+
         ch.style.display = 'none';
         if (currChName.toLowerCase().includes(searchValue.toLowerCase())) {
             ch.style.display = 'block';
@@ -742,8 +745,9 @@ function showCategorieNames(e, option, isEdit) {
         }
 
     }
+
     [...category].forEach(ch => {
-        let currChName = ch.value;
+        let currChName = ch.outerText;
 
         ch.style.display = 'none';
         if (currChName.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -762,7 +766,10 @@ function showSubCategoryContiner(e) {
 }
 
 
-
+function makeSelected(e) {
+    e.preventDefault();
+    console.log('asdasd')
+}
 
 registerSessionId();
 registerPartial();

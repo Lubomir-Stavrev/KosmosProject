@@ -95,6 +95,14 @@ async function router(path, condition) {
         tempData.products = await auth.getProductsWith(name, 'category')
 
         path = 'kosmosShop';
+    } else if (path.includes('kosmosShop/')) {
+        let name = path.split('/')[1];
+        let categoryDataHome = await auth.getCategoriesAndSubcategories();
+
+        tempData.categories = categoryDataHome;
+        tempData.products = await auth.getProductsWith(name)
+
+        path = 'kosmosShop';
     }
 
 
@@ -125,4 +133,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/kosmosShop');
+navigate('/create');
