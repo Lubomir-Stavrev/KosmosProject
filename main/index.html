@@ -69,6 +69,9 @@
 
     <script src="./scripts/service.js" defer></script>
     <script src="./scripts/router.js" defer></script>
+    <script src="./scripts/shoppingCart.js" defer></script>
+    <script src="./scripts/categories.js" defer></script>
+    <script src="./scripts/auth.js" defer></script>
     <script src="./scripts/init.js" defer></script>
 </head>
 
@@ -119,7 +122,11 @@
                 </div>
             </div>
             {{/if}}
-
+            <div style="position:fixed;float:right;right:10px;top:100px; z-index:1000;">
+                <span>
+        <img style="width:50px;" src="../images/warning.png" alt="">
+    </span>
+            </div>
             <div class="inner-header flex">
 
                 <img id="logoHeader" src="../../images/logo1.png" alt="">
@@ -148,7 +155,8 @@
         </div>
     </script>
     <button onclick="topFunction()" id="myBtn" title="Скролни до горе">	
-&#129121;</button>
+	
+&#x2191;</button>
     <script>
         //Get the button
         var mybutton = document.getElementById("myBtn");
@@ -176,6 +184,7 @@
 
 
     <script id="footerTemp" type="text/x-handlebars">
+
         <footer id="footer">
             <svg viewBox="0 0 120 32">
 		<defs>
