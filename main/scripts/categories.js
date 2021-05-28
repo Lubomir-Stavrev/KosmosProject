@@ -67,6 +67,19 @@ function searchCategories(e) {
 
 }
 
+function showCategory(e) {
+    e.preventDefault();
+
+    let categoryDropDown = document.getElementById('categoryDropDown');
+    categoryDropDown.style.display = categoryDropDown.style.display == 'none' ?
+        'block' : 'none';
+
+    let categoryIcon = document.getElementsByClassName('category')[0].parentNode;
+
+    categoryIcon.classList.toggle('change');
+
+}
+
 function showCategorieNames(e, option, isEdit) {
     e.preventDefault();
     let category = '';

@@ -7,13 +7,16 @@ function addToCart(e) {
     let cart = document.getElementById('shoppingCartNav');
     cart.classList.toggle('toggleShake');
 
+    console.log(tempData);
     let data = {
 
         description: tempData.description,
         image: tempData.image,
         price: tempData.price,
+        newPrice: tempData.newPrice ? tempData.newPrice : tempData.price,
         productId: tempData.productId,
         title: tempData.title,
+        isOffer: tempData.isOffer,
         productPath: window.location.href
     }
     var prod = [];

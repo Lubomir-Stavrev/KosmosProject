@@ -101,3 +101,10 @@
         text-align: center;
     }
 }
+
+#discountWrapper {
+    border: 1px solid #00008B;
+    border-radius: 20px;
+    padding: 20px 10px;
+    visibility: hidden;
+}

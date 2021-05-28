@@ -1,5 +1,6 @@
 {{> header}}
 <div id="detailsWrapper" onload="window.scrollTo(0, 350);">
+
     <div id="detailsContant">
         <div id="imgContainer">
                 <img id="detailsImage"
@@ -9,14 +10,33 @@
                 <div id="detailsInfo">
 <h1>{{title}}</h1>
 <div id="line"></div>
-<h2>Цена: {{price}}лв</h2>
+    {{#if isOffer}}
+<h2 style="text-decoration:line-through;">{{price}}лв</h2>
+<h2 style="font: 900;">Цена: {{newPrice}}лв</h2>
+{{else}}
+<h2 >Цена: {{price}}лв</h2>
+{{/if}}
 <h3>Количество: {{quantity}}</h3>
 <p>{{description}}</p>
 <div>
     {{#if isAdmin}}
+    <div id="discountWrapper">
+        <label for="">Нова цена</label>
+        <input type="number">
+        <a href="/onDiscount/{{productId}}" onclick="dropOnDiscount(event)">Обнови</a>
+    </div>
     <a onclick="requestDelete(event)" href="/delete/{{productId}}">
 <button class="buyButton">Изтрий</button>
     </a>
+    {{#if isOffer}}
+    <a onclick="removeDiscountOffer(event)" href="/remove/{{productId}}">
+<button class="buyButton">Махни промоция</button>
+    </a>
+    {{else}}
+    <a onclick="showDiscountSetting(event)" href="/delete/{{productId}}">
+<button class="buyButton">Пусни в промоция</button>
+    </a>
+    {{/if}}
     <a onclick="navigateHandler(event)" href="/edit/{{productId}}">
 <button class="buyButton">Редактирай</button>
     </a>

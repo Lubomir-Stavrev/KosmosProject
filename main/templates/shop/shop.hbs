@@ -22,9 +22,16 @@
                 </a>
                 <div
                     class="subCategory" style="display: none;">
+                       
+                    <a style="cursor:
+                        pointer;"
+                    onclick="productsByCategory(event)">{{categoryName}}
+                </a>
                     {{#each this.subcategories}}
+
                     <a onclick="productsByCategory(event)" style="cursor:
                         pointer;">{{this.subcategoryName}}</a>
+
                     {{/each}}
                 </div>
             </div>
@@ -41,8 +48,9 @@
             </button>
         </div>
     </div>
-    <div id="posts" onclick="navigateHandler(event)">
+    <div id="posts" {{!-- onclick="navigateHandler(event)" --}}>
         {{#each products}}
+        {{#if isOffer}}
         <div onclick="navigateHandler(event)" class="post">
             <h1>{{title}}</h1>
             <a href="/details/{{productId}}">
@@ -56,10 +64,32 @@
                     </div>
                 </a>
                 <h1 style="text-decoration:line-through;">{{price}}лв</h1>
+                <h1 style="font-size:20px">{{newPrice}}лв</h1>
+
+            </a>
+        </div>
+        {{/if}}
+        {{/each}}
+        {{#each products}}
+        {{#if isOffer}}
+        {{else}}
+        <div onclick="navigateHandler(event)" class="post">
+            <h1>{{title}}</h1>
+            <a href="/details/{{productId}}">
+
+                <a href="/details/{{productId}}">
+                    <img class="product-Image"
+                        src={{image}}>
+                    <div class="middle">
+                        <div class="textButton">Купи {{title}} за
+                            {{price}}лв</div>
+                    </div>
+                </a>
                 <h1 style="font-size:20px">{{price}}лв</h1>
 
             </a>
         </div>
+        {{/if}}
         {{else}}
         <div class="notFound">
             <img src="../../images/notFound.png">

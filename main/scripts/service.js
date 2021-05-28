@@ -94,7 +94,9 @@ const auth = {
                                 subcategory: el[1].subcategory,
                                 type: el[1].type,
                                 quantity: el[1].quantity,
-                                brand: el[1].brand
+                                brand: el[1].brand,
+                                isOffer: el[1].isOffer ? true : false,
+                                newPrice: el[1].newPrice ? el[1].newPrice : el[1].price,
                             })
                         }
                     })
@@ -128,6 +130,8 @@ const auth = {
                     brand: data.brand,
                     uid: data.uid,
                     productId: id,
+                    isOffer: data.isOffer ? true : false,
+                    newPrice: data.newPrice ? data.newPrice : data.price,
                     isCreator
                 }
             })
@@ -516,6 +520,26 @@ const auth = {
             })
 
         return await obj;
+    },
+    dropOnDiscount(productId, newPrice) {
+
+        return fetch(productsURL + `/products//${productId}/.json`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                newPrice,
+                isOffer: true,
+            })
+        }).then(res => res.json());
+    },
+    removeDiscount(productId) {
+
+        return fetch(productsURL + `/products//${productId}/.json`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                newPrice: 0,
+                isOffer: false,
+            })
+        }).then(res => res.json());
     }
 
 

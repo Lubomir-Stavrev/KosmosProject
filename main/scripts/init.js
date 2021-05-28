@@ -10,21 +10,24 @@ function registerPartial() {
 function navigateHandler(e) {
     e.preventDefault();
 
-
     if (e.target.tagName == 'BUTTON' || e.target.tagName == 'LI' ||
         e.target.tagName == 'SPAN' ||
         e.target.tagName == 'IMG') {
         let url = new URL(e.target.parentNode.href);
+
         navigate(url.pathname);
     }
     if (e.target.parentNode.parentNode.tagName == 'A') {
         let url = new URL(e.target.parentNode.parentNode.href);
+
         navigate(url.pathname);
     }
     if (e.target.tagName == 'A') {
+
         let url = new URL(e.target.href);
         navigate(url.pathname);
     }
+
     return;
 }
 
@@ -108,18 +111,6 @@ function scrollToEnd(e) {
     document.getElementById('comment-Section').scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
-function showCategory(e) {
-    e.preventDefault();
-
-    let categoryDropDown = document.getElementById('categoryDropDown');
-    categoryDropDown.style.display = categoryDropDown.style.display == 'none' ?
-        'block' : 'none';
-
-    let categoryIcon = document.getElementsByClassName('category')[0].parentNode;
-
-    categoryIcon.classList.toggle('change');
-
-}
 
 
 function searchProducts(e) {
@@ -167,5 +158,16 @@ function makeSelected(e) {
     console.log('asdasd')
 }
 
+window.onpopstate = function(event) {
+
+    navigate(window.location.pathname);
+};
+
+function showDiscountSetting(e) {
+    e.preventDefault();
+
+    let wrapper = document.getElementById('discountWrapper');
+    wrapper.style.visibility = wrapper.style.visibility == 'visible' ? 'hidden' : 'visible';
+}
 registerSessionId();
 registerPartial();

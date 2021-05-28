@@ -10,6 +10,9 @@
 
 .settingsBar {
     float: right;
+    position: fixed;
+    right: 5px;
+    z-index: 1000;
 }
 
 .dropDownSettings a {

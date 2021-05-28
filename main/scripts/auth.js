@@ -91,7 +91,7 @@ function editForm(e) {
     let description = document.getElementById('descriptionEdit').value;
     let image = document.getElementById('imgUrlEdit').value;
     let price = document.getElementById('priceEdit').value;
-    let quantity = document.getElementById('quantityEdit');
+    let quantity = document.getElementById('quantityEdit').value;
     let category = document.getElementById('selectCategoryEdit');
     let subcategory = document.getElementById('selectSubcategoryEdit');
     console.log(subcategory.options[subcategory.selectedIndex].text)
@@ -201,5 +201,26 @@ function requestDelete(e) {
 
     auth.deleteProduct(postId).then(res => {
         navigate('/kosmosShop');
+    })
+}
+
+function dropOnDiscount(e) {
+    e.preventDefault();
+
+    let newPrice = document.getElementById('discountWrapper').children[1].value;
+    let productId = e.target.href.split('/')[4];
+
+    auth.dropOnDiscount(productId, newPrice).then(res => {
+        console.log(res)
+        navigate(`/details/${productId}`);
+    })
+}
+
+function removeDiscountOffer(e) {
+    e.preventDefault();
+    let productId = e.target.parentNode.href.split('/')[4];
+    auth.removeDiscount(productId).then(res => {
+        console.log(res)
+        navigate(`/details/${productId}`);
     })
 }

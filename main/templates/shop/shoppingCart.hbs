@@ -24,8 +24,26 @@
             </div>
           </td>
 
-
+{{#if isOffer}}
           <td
+            onclick="changeProductQuantity(event,{{newPrice}})"
+            class="rightTableContainer
+            quantityContainer">
+
+            <button>-</button>
+            <input oninput="addToPrice(event,{{newPrice}})" value="1"
+              minlength="1" maxlength="2" size="2" max="12"
+              min="1" class="quantityInput">
+            <button>+</button>
+
+          </td>
+
+          <td class="rightTableContainer productPrice">
+            <span>{{newPrice}}лв</span>
+
+          </td>
+          {{else}}
+<td
             onclick="changeProductQuantity(event,{{price}})"
             class="rightTableContainer
             quantityContainer">
@@ -42,6 +60,7 @@
             <span>{{price}}лв</span>
 
           </td>
+          {{/if}}
 
           <td class="rightTableContainer removeFromList">
             <a href="/remove/{{productId}}"
