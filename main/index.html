@@ -76,9 +76,29 @@
 </head>
 
 <body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Относно</a>
+        <a href="#">Услуги</a>
+        <a href="#">Клиенти</a>
+        <a href="#">Контакти</a>
+    </div>
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementsByClassName('menuContainer')[0].style.visibility = 'hidden'
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementsByClassName('menuContainer')[0].style.visibility = 'visible'
+        }
+    </script>
     <script id="headerTemp" type="text/x-handlebars">
         <div id="header">
-            <div class="menuContainer" onclick="activateMenu(this)">
+            <div class="menuContainer" onclick="openNav()">
                 <div>
                     <div class="bar1"></div>
                     <div class="bar2"></div>

@@ -133,4 +133,4 @@ function navigate(direction, condition) {
 }
 
 
-navigate('/create');
+navigate('/kosmosShop');

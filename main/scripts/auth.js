@@ -64,7 +64,7 @@ function createForm(e) {
 
     }
 
-    if (title == '' || description == '' || image == '' || price == '' || quantity == '' ||
+    if (title == '' || image == '' || price == '' || quantity == '' ||
         category == '' ||
         brand == '') {
         displayErrorMessage('Трябва да попълните всияки поленца !', 'createForm');
@@ -104,7 +104,7 @@ function editForm(e) {
         price = price.replace(/,/g, '.')
     }
 
-    if (title == '' || description == '' || image == '' || category.value == '' || price == '') {
+    if (title == '' || image == '' || category.value == '' || price == '') {
         displayErrorMessage('Трябва да попълните всички поленца !', 'editForm');
         return;
     }

@@ -2,7 +2,7 @@
     display: inline-block;
     text-align: center;
     align-content: center;
-    margin: 25px;
+    margin: 30px;
     font-size: 1px;
     position: relative;
 }
@@ -12,17 +12,18 @@
 }
 
 .post h1 {
-    font-size: calc(19pt - 6px);
+    font-size: calc(16pt - 6px);
     color: #00308F;
+    font-weight: 800 !important;
 }
 
 .product-Image {
     border-bottom: 2px solid #00308F;
     border-radius: 90px;
-    max-width: 230px;
-    max-height: 300px;
-    width: 230px;
-    height: 250px;
+    max-width: 170px;
+    max-height: 160px;
+    width: 160px;
+    height: 150px;
     transition: .5s ease;
     backface-visibility: hidden;
     -webkit-transition: .5s ease;
@@ -111,4 +112,19 @@
 
 .wrap {
     min-height: calc(100% - 285px);
+}
+
+@media screen and (max-width: 500px) {
+    .post {
+        margin: 7px;
+    }
+    .post h1 {
+        font-size: calc(14pt - 6px);
+    }
+    .product-Image {
+        max-width: 120px;
+        max-height: 120px;
+        width: 120px;
+        height: 120px;
+    }
 }
