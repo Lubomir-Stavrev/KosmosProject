@@ -31,6 +31,7 @@ async function router(path, condition) {
             let categoryDataHome = await auth.getCategoriesAndSubcategories();
             tempData.categories = categoryDataHome;
             tempData.products = productsData.all;
+            tempData.home = true;
             break;
         case 'create':
             let categoryData = await auth.getCategoryNames();
@@ -87,12 +88,30 @@ async function router(path, condition) {
         path = 'edit';
     } else if (path.includes('profile')) {
         tempData.users = await auth.getAllRegisteredUsers();
-    } else if (path.includes('category')) {
+    } else if (path.includes('subCategory')) {
         let name = path.split('/')[1];
+        if (name.includes(',')) {
+            name = name.split(',').join(' ').trim();
+        }
         let categoryDataHome = await auth.getCategoriesAndSubcategories();
 
         tempData.categories = categoryDataHome;
-        tempData.products = await auth.getProductsWith(name, 'category')
+        tempData.home = true;
+        console.log(name);
+        tempData.products = await auth.getProductsWith(await name, 'subCategory')
+
+        path = 'kosmosShop';
+    } else if (path.includes('category')) {
+        let name = path.split('/')[1];
+        if (name.includes(',')) {
+            name = name.split(',').join(' ').trim();
+        }
+        let categoryDataHome = await auth.getCategoriesAndSubcategories();
+
+        tempData.categories = categoryDataHome;
+        tempData.home = true;
+        console.log(name);
+        tempData.products = await auth.getProductsWith(await name, 'category')
 
         path = 'kosmosShop';
     } else if (path.includes('kosmosShop/')) {

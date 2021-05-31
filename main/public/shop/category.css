@@ -29,15 +29,9 @@
 }
 
 #categoryDropDown {
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: calc(30px - 1pt);
-    float: right;
-    border: 1px solid #00308F;
     color: #00308F;
-    background: rgb(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 5px 20px 5px 7px;
-    position: absolute;
     z-index: 100;
 }
 
@@ -45,11 +39,23 @@
     margin-top: 10px;
     margin-bottom: 10px;
     display: block;
+    font-size: 19px;
 }
 
-#categoryDropDown a:hover {
-    text-decoration: underline;
+.underCategoryLine {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-bottom: 1px solid #00308F;
+    margin-bottom: 0px;
+    transition: 0.5s;
 }
+
+
+/* #categoryDropDown a:hover {
+    text-decoration: underline;
+} */
 
 #categoryTable {
     text-align: left;

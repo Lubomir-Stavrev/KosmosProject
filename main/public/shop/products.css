@@ -12,7 +12,7 @@
 }
 
 .post h1 {
-    font-size: calc(16pt - 6px);
+    font-size: calc(18pt - 6px);
     color: #00308F;
     font-weight: 800 !important;
 }
@@ -20,10 +20,10 @@
 .product-Image {
     border-bottom: 2px solid #00308F;
     border-radius: 90px;
-    max-width: 170px;
-    max-height: 160px;
-    width: 160px;
-    height: 150px;
+    max-width: 200px;
+    max-height: 200px;
+    width: 190px;
+    height: 190px;
     transition: .5s ease;
     backface-visibility: hidden;
     -webkit-transition: .5s ease;

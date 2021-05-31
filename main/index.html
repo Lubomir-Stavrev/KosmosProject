@@ -76,27 +76,61 @@
 </head>
 
 <body>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Относно</a>
-        <a href="#">Услуги</a>
-        <a href="#">Клиенти</a>
-        <a href="#">Контакти</a>
-    </div>
-
-
     <script>
         function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
             document.getElementsByClassName('menuContainer')[0].style.visibility = 'hidden'
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").style.borderRight = "1px solid #00308F";
         }
 
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("mySidenav").style.borderRight = "none";
             document.getElementsByClassName('menuContainer')[0].style.visibility = 'visible'
+
         }
     </script>
     <script id="headerTemp" type="text/x-handlebars">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <div>
+                <a onclick="navigateHandler(event)" href="/kosmosShop">Магазин</a> {{#if home}}
+                <a href="/kosmosShop" onclick="showCategory(event)">Категории </a>
+
+                <div id="categoryDropDown" style="display:none">
+                    <a onclick="navigateHandler(event)" href="/kosmosShop">Всички Продукти</a>
+                    <div class="underCategoryLine"></div>
+                    {{#each categories}}
+                    <div>
+
+                        <a style="cursor:pointer;" onclick="showSubCategoryContiner(event)">{{categoryName}} ></a>
+
+                        <div class="subCategory" style="display: none;">
+
+                            <a style="cursor:
+                            pointer;" onclick="productsByCategory(event)">Всички Подкатегории
+                            </a> {{#each this.subcategories}}
+
+                            <a onclick="productsByCategory(event)" href="/subcategory" style="cursor:pointer;">
+                                {{this.subcategoryName}}
+                            </a> {{/each}}
+                        </div>
+                    </div>
+                    <div class="underCategoryLine"></div>
+                    {{/each}}
+
+                </div>
+                {{/if}}
+                <a href="/contacts" onclick="navigateHandler(event)">Контакти</a> {{#if isLogged}}
+                <a href="/logout" onclick="navigateHandler(event)">Излез</a> {{else}}
+                <a href="/login" onclick="navigateHandler(event)">Влез</a>
+                <a href="/register" onclick="navigateHandler(event)">Регистрирай се</a> {{/if}}
+
+
+            </div>
+
+        </div>
         <div id="header">
             <div class="menuContainer" onclick="openNav()">
                 <div>

@@ -22,8 +22,21 @@ function productsByCategory(e) {
     if (e.target.tagName != "A") {
         return
     }
-    let categoryValue = e.target.innerText;
 
+    let categoryValue = e.target.innerText.split(' ');
+    if (e.target.innerText.toLowerCase().includes('категории')) {
+        let categoryName = e.target.parentNode.parentNode.children[0].innerText.split('>')[0].trim();
+
+        navigate(`/category/${categoryName}`);
+        return;
+    }
+
+    if (e.target.href) {
+        console.log(e.target.href);
+        console.log('==========>');
+        navigate(`/subCategory/${categoryValue}`)
+        return;
+    }
     navigate(`/category/${categoryValue}`)
 
 }
@@ -74,9 +87,9 @@ function showCategory(e) {
     categoryDropDown.style.display = categoryDropDown.style.display == 'none' ?
         'block' : 'none';
 
-    let categoryIcon = document.getElementsByClassName('category')[0].parentNode;
+    /* let categoryIcon = document.getElementsByClassName('category')[0].parentNode;
 
-    categoryIcon.classList.toggle('change');
+    categoryIcon.classList.toggle('change'); */
 
 }
 

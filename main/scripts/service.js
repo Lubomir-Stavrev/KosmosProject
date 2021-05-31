@@ -374,7 +374,7 @@ const auth = {
 
     async getProductsWith(name, by) {
         let productsWithName = [];
-
+        console.log(name);
         let allProducts = await this.getAllProducts();
         if (allProducts) {
             if (allProducts.all) {
@@ -386,6 +386,15 @@ const auth = {
                             if (product[1].category) {
 
                                 if (product[1].category.toLowerCase().includes(name.toLowerCase())) {
+
+                                    productsWithName.push(product[1]);
+                                }
+
+                            }
+                        } else if (by == 'subCategory') {
+                            if (product[1].subcategory) {
+
+                                if (product[1].subcategory.toLowerCase().includes(name.toLowerCase())) {
 
                                     productsWithName.push(product[1]);
                                 }

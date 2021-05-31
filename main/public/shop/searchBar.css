@@ -1,5 +1,5 @@
 .search {
-    width: calc(40% + 10pt);
+    width: calc(40% + 30pt);
     display: flex;
     margin: 0 auto;
 }
@@ -13,10 +13,6 @@
     border-radius: 20px 0 0 20px;
     outline: none;
     color: #9DBFAF;
-    -webkit-border-radius: 20px 0 0 20px;
-    -moz-border-radius: 20px 0 0 20px;
-    -ms-border-radius: 20px 0 0 20px;
-    -o-border-radius: 20px 0 0 20px;
 }
 
 .searchTerm:focus {
@@ -37,7 +33,6 @@
     -moz-border-radius: 0 10px 10px 0;
     -ms-border-radius: 0 10px 10px 0;
     -o-border-radius: 0 10px 10px 0;
-    
 }
 
 .searchButton img {
@@ -52,6 +47,5 @@
     justify-content: center;
     margin-top: calc(6% + 10px);
     z-index: 1000;
-    display:inherit;
-    
+    display: inherit;
 }
