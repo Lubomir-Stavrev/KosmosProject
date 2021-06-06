@@ -7,8 +7,8 @@
 #shoppingCartNav div span img {
     max-width: 100px;
     width: 40px;
-    margin-top: 15pt;
-    margin-right: 15pt;
+    margin-top: 21pt;
+    margin-right: 16pt;
     cursor: pointer;
     transition: 0.4s;
     -webkit-transition: 0.4s;
@@ -20,6 +20,7 @@
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    z-index: 1000;
 }
 
 #shoppingCartNav div span img:hover {

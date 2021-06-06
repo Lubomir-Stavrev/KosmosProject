@@ -520,10 +520,25 @@ const auth = {
             .then(data => {
                 if (data) {
                     Object.entries(data).forEach(el => {
-                        obj.push({
-                            categoryName: el[0],
-                            subcategories: el[1]
-                        })
+                        if (el[1] != '' && el[1]) {
+
+
+                            let newSubs = [];
+
+                            Object.entries(el[1]).forEach(names => {
+                                if (names[1].subcategoryName) {
+                                    newSubs.push({
+                                        subCategoryId: names[0],
+                                        subcategoryName: names[1].subcategoryName,
+                                    })
+                                }
+                            })
+
+                            obj.push({
+                                categoryName: el[0],
+                                subcategories: newSubs
+                            })
+                        }
                     })
                 }
             })

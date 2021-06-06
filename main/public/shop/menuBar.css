@@ -81,6 +81,7 @@
     left: 0;
     background: rgb(255, 255, 255, 0.9);
     overflow-x: hidden;
+    white-space: nowrap;
     transition: 0.5s;
     padding-top: 60px;
     -webkit-transition: 0.5s;

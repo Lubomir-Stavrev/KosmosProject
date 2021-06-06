@@ -30,6 +30,7 @@ async function router(path, condition) {
             let productsData = await auth.getAllProducts();
             let categoryDataHome = await auth.getCategoriesAndSubcategories();
             tempData.categories = categoryDataHome;
+
             tempData.products = productsData.all;
             tempData.home = true;
             break;
@@ -97,7 +98,7 @@ async function router(path, condition) {
 
         tempData.categories = categoryDataHome;
         tempData.home = true;
-        console.log(name);
+
         tempData.products = await auth.getProductsWith(await name, 'subCategory')
 
         path = 'kosmosShop';
@@ -110,7 +111,7 @@ async function router(path, condition) {
 
         tempData.categories = categoryDataHome;
         tempData.home = true;
-        console.log(name);
+
         tempData.products = await auth.getProductsWith(await name, 'category')
 
         path = 'kosmosShop';
@@ -120,6 +121,7 @@ async function router(path, condition) {
 
         tempData.categories = categoryDataHome;
         tempData.products = await auth.getProductsWith(name)
+        tempData.home = true;
 
         path = 'kosmosShop';
     }

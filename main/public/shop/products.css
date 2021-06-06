@@ -15,6 +15,15 @@
     font-size: calc(18pt - 6px);
     color: #00308F;
     font-weight: 800 !important;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    justify-content: center;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
 }
 
 .product-Image {
@@ -57,9 +66,27 @@
     opacity: 1;
 }
 
+.post:hover h1 {
+    animation: fadeText ease 1s;
+    -webkit-animation: fadeText ease 1s;
+    visibility: hidden;
+}
+
+@keyframes fadeText {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 .textButton {
     font-size: calc(15pt - 3pt);
-    padding: 14px 20px;
+    padding: 30px 60px;
     border: 1px solid #00308F;
     color: #00308F;
     background: rgba(89, 196, 225, 0.0);
@@ -74,6 +101,8 @@
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    width: 100px;
+    height: 50px;
 }
 
 #posts {
@@ -81,7 +110,7 @@
     position: center;
     text-align: center;
     margin-bottom: 100px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .detailsButton {
@@ -116,15 +145,23 @@
 
 @media screen and (max-width: 500px) {
     .post {
-        margin: 7px;
+        margin: 10px;
     }
     .post h1 {
         font-size: calc(14pt - 6px);
+        width: 100px;
+        text-align: center;
+        justify-content: center;
     }
     .product-Image {
-        max-width: 120px;
-        max-height: 120px;
-        width: 120px;
-        height: 120px;
+        max-width: 110px;
+        max-height: 110px;
+        width: 110px;
+        height: 110px;
+    }
+    .textButton {
+        width: 100px;
+        padding: 30px 30px;
+        height: 45px;
     }
 }
